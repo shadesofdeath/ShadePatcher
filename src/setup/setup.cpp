@@ -24,17 +24,20 @@
 //
 // Restarting the shell
 // --------------------
-// explorer.exe holds C:\Windows\dxgi.dll open, so it has to go away before that file can be written or deleted.
-// The shell is terminated rather than asked to exit: Windows restarts a terminated shell by itself, in the
-// user's own session and without administrator rights, which is exactly what is wanted. Asking it to exit
-// politely suppresses that restart and would leave the user with no desktop.
+// explorer.exe holds C:\Windows\dxgi.dll open, so the file cannot be overwritten or deleted while the shell runs.
+// It can be renamed, though: a held file is moved aside (and deleted at the next restart), which frees its name
+// without stopping anything. All files are put in place first and the shell is restarted exactly once, at the
+// end, so that it comes back with the new state.
 //
-// The restart takes a moment, so the file operations retry for a few seconds to catch the window while nothing
-// holds the file. If that still fails, the change is queued for the next reboot and the user is told.
+// The shell is terminated rather than asked to exit. Winlogon restarts a terminated shell only sometimes (not at
+// all when the running explorer was not the one Winlogon started), so this program does not rely on it: when no
+// explorer has appeared after a few seconds, it starts one itself as the signed-in user, with the token of that
+// user's sihost.exe. Starting it with this program's own token would give the user an elevated desktop.
 //
 #include <Windows.h>
 #include <Shlwapi.h>
 #include <TlHelp32.h>
+#include <UserEnv.h>
 #include <shellapi.h>
 #include <tchar.h>
 
@@ -46,6 +49,8 @@
 
 #pragma comment(lib, "Shlwapi.lib")
 #pragma comment(lib, "Shell32.lib")
+#pragma comment(lib, "Advapi32.lib")
+#pragma comment(lib, "Userenv.lib")
 
 namespace {
 
@@ -208,8 +213,9 @@ bool IsShellRunning()
     return FindWindowW(L"Shell_TrayWnd", nullptr) != nullptr;
 }
 
-// Terminates every explorer.exe in this session. Windows brings the shell back on its own, unelevated.
-void StopShell()
+// Calls `visit` for every process of the given name in this session, until it returns false.
+template <typename Visit>
+void ForEachProcessInSession(const wchar_t* name, Visit visit)
 {
     HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
     if (snapshot == INVALID_HANDLE_VALUE)
@@ -227,24 +233,21 @@ void StopShell()
     {
         do
         {
-            if (_wcsicmp(entry.szExeFile, L"explorer.exe") != 0)
+            if (_wcsicmp(entry.szExeFile, name) != 0)
             {
                 continue;
             }
 
-            // Only this user's shell. Terminating another session's would be someone else's desktop.
+            // Only this user's processes. Another session's shell would be someone else's desktop.
             DWORD session = 0;
             if (!ProcessIdToSessionId(entry.th32ProcessID, &session) || session != thisSession)
             {
                 continue;
             }
 
-            HANDLE process = OpenProcess(PROCESS_TERMINATE | SYNCHRONIZE, FALSE, entry.th32ProcessID);
-            if (process)
+            if (!visit(entry.th32ProcessID))
             {
-                TerminateProcess(process, 1);
-                WaitForSingleObject(process, 5000);
-                CloseHandle(process);
+                break;
             }
         } while (Process32NextW(snapshot, &entry));
     }
@@ -252,9 +255,121 @@ void StopShell()
     CloseHandle(snapshot);
 }
 
-// Waits for Windows to bring the shell back. If it does not, the user is told how to start it themselves:
-// launching explorer from here would inherit this program's administrator rights and leave them with an
-// elevated desktop, which is worse than a missing one.
+// Whether an explorer.exe runs in this session. The process is up well before its taskbar window is.
+bool IsShellProcessRunning()
+{
+    bool found = false;
+    ForEachProcessInSession(L"explorer.exe", [&](DWORD) { found = true; return false; });
+    return found;
+}
+
+// Terminates every explorer.exe in this session.
+void StopShell()
+{
+    ForEachProcessInSession(L"explorer.exe", [](DWORD pid)
+    {
+        HANDLE process = OpenProcess(PROCESS_TERMINATE | SYNCHRONIZE, FALSE, pid);
+        if (process)
+        {
+            TerminateProcess(process, 1);
+            WaitForSingleObject(process, 5000);
+            CloseHandle(process);
+        }
+        return true;
+    });
+}
+
+// A primary token of the signed-in user without administrator rights, borrowed from a process that always runs
+// that way in an interactive session. Null when none is found.
+HANDLE UnelevatedUserToken()
+{
+    HANDLE result = nullptr;
+    const wchar_t* const donors[] = { L"sihost.exe", L"ctfmon.exe", L"taskhostw.exe" };
+
+    for (const wchar_t* donor : donors)
+    {
+        ForEachProcessInSession(donor, [&](DWORD pid)
+        {
+            HANDLE process = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, FALSE, pid);
+            if (!process)
+            {
+                return true;
+            }
+
+            HANDLE token = nullptr;
+            if (OpenProcessToken(process, TOKEN_DUPLICATE | TOKEN_QUERY, &token))
+            {
+                TOKEN_ELEVATION elevation{};
+                DWORD size = 0;
+                if (GetTokenInformation(token, TokenElevation, &elevation, sizeof(elevation), &size) &&
+                    !elevation.TokenIsElevated)
+                {
+                    DuplicateTokenEx(token, TOKEN_QUERY | TOKEN_DUPLICATE | TOKEN_ASSIGN_PRIMARY |
+                                                TOKEN_ADJUST_DEFAULT | TOKEN_ADJUST_SESSIONID,
+                                     nullptr, SecurityImpersonation, TokenPrimary, &result);
+                }
+                CloseHandle(token);
+            }
+            CloseHandle(process);
+            return result == nullptr;
+        });
+
+        if (result)
+        {
+            break;
+        }
+    }
+    return result;
+}
+
+// Starts the shell as the signed-in user, unelevated.
+bool StartShellAsUser()
+{
+    HANDLE token = UnelevatedUserToken();
+    if (!token)
+    {
+        OutputDebugStringW(L"[ShadePatcher setup] no unelevated user token to start the shell with\n");
+        return false;
+    }
+
+    wchar_t windows[MAX_PATH];
+    UINT cch = GetWindowsDirectoryW(windows, MAX_PATH);
+    if (cch == 0 || cch >= MAX_PATH)
+    {
+        CloseHandle(token);
+        return false;
+    }
+    std::wstring explorer = std::wstring(windows) + L"\\explorer.exe";
+
+    void* environment = nullptr;
+    CreateEnvironmentBlock(&environment, token, FALSE);
+
+    STARTUPINFOW si{};
+    si.cb = sizeof(si);
+    si.lpDesktop = const_cast<wchar_t*>(L"winsta0\\default");
+    PROCESS_INFORMATION pi{};
+
+    BOOL ok = CreateProcessWithTokenW(token, 0, explorer.c_str(), nullptr,
+                                      environment ? CREATE_UNICODE_ENVIRONMENT : 0, environment, windows, &si, &pi);
+    DWORD error = ok ? 0 : GetLastError();
+
+    if (environment)
+    {
+        DestroyEnvironmentBlock(environment);
+    }
+    CloseHandle(token);
+
+    if (!ok)
+    {
+        OutputDebugStringW((L"[ShadePatcher setup] starting the shell failed: " + DescribeError(error) + L"\n").c_str());
+        return false;
+    }
+    CloseHandle(pi.hThread);
+    CloseHandle(pi.hProcess);
+    return true;
+}
+
+// Waits for the taskbar. Only when even starting the shell ourselves did not bring it back is the user asked to.
 void WaitForShell(DWORD timeoutMs)
 {
     ULONGLONG deadline = GetTickCount64() + timeoutMs;
@@ -271,6 +386,26 @@ void WaitForShell(DWORD timeoutMs)
     }
 }
 
+// Stops the shell and brings it back, so that it loads whatever is in the Windows folder now.
+void RestartShell()
+{
+    StopShell();
+
+    // Winlogon may restart it on its own; a second explorer started meanwhile would only find the shell taken and
+    // exit, but waiting a moment avoids the extra process.
+    ULONGLONG deadline = GetTickCount64() + 3000;
+    while (!IsShellProcessRunning() && GetTickCount64() < deadline)
+    {
+        Sleep(100);
+    }
+    if (!IsShellProcessRunning())
+    {
+        StartShellAsUser();
+    }
+
+    WaitForShell(20000);
+}
+
 // ---------------------------------------------------------------------------------------------------------------
 // File operations that have to win a race against the shell restarting
 // ---------------------------------------------------------------------------------------------------------------
@@ -278,8 +413,30 @@ void WaitForShell(DWORD timeoutMs)
 constexpr DWORD kRetryForMs = 8000;
 constexpr DWORD kRetryEveryMs = 150;
 
+bool IsHeldError(DWORD error)
+{
+    return error == ERROR_SHARING_VIOLATION || error == ERROR_ACCESS_DENIED || error == ERROR_USER_MAPPED_FILE;
+}
+
+// A file a process has loaded cannot be overwritten or deleted, but it can be renamed. The held copy is moved to a
+// name of its own and deleted at the next restart, which frees the original name at once.
+bool MoveAside(const std::wstring& path)
+{
+    std::wstring aside = path + L".old-" + std::to_wstring(GetTickCount64());
+    if (!MoveFileExW(path.c_str(), aside.c_str(), MOVEFILE_REPLACE_EXISTING))
+    {
+        return false;
+    }
+    if (!DeleteFileW(aside.c_str()))
+    {
+        MoveFileExW(aside.c_str(), nullptr, MOVEFILE_DELAY_UNTIL_REBOOT);
+    }
+    return true;
+}
+
 bool CopyWithRetry(const std::wstring& from, const std::wstring& to, DWORD* lastError)
 {
+    bool movedAside = false;
     ULONGLONG deadline = GetTickCount64() + kRetryForMs;
     for (;;)
     {
@@ -290,10 +447,17 @@ bool CopyWithRetry(const std::wstring& from, const std::wstring& to, DWORD* last
         *lastError = GetLastError();
 
         // Anything other than the file being held is not going to improve by waiting.
-        if (*lastError != ERROR_SHARING_VIOLATION && *lastError != ERROR_ACCESS_DENIED &&
-            *lastError != ERROR_USER_MAPPED_FILE)
+        if (!IsHeldError(*lastError))
         {
             return false;
+        }
+        if (!movedAside)
+        {
+            movedAside = true;
+            if (MoveAside(to))
+            {
+                continue;
+            }
         }
         if (GetTickCount64() >= deadline)
         {
@@ -306,6 +470,7 @@ bool CopyWithRetry(const std::wstring& from, const std::wstring& to, DWORD* last
 // Writes the bytes to `to`, retrying while the shell still holds the old file, like CopyWithRetry.
 bool WriteWithRetry(const ResourceView& view, const std::wstring& to, DWORD* lastError)
 {
+    bool movedAside = false;
     ULONGLONG deadline = GetTickCount64() + kRetryForMs;
     for (;;)
     {
@@ -324,10 +489,17 @@ bool WriteWithRetry(const ResourceView& view, const std::wstring& to, DWORD* las
             return false;
         }
         *lastError = GetLastError();
-        if (*lastError != ERROR_SHARING_VIOLATION && *lastError != ERROR_ACCESS_DENIED &&
-            *lastError != ERROR_USER_MAPPED_FILE)
+        if (!IsHeldError(*lastError))
         {
             return false;
+        }
+        if (!movedAside)
+        {
+            movedAside = true;
+            if (MoveAside(to))
+            {
+                continue;
+            }
         }
         if (GetTickCount64() >= deadline)
         {
@@ -369,6 +541,12 @@ bool DeleteWithRetry(const std::wstring& path, bool* needsReboot)
     {
         if (DeleteFileW(path.c_str()) || GetLastError() == ERROR_FILE_NOT_FOUND)
         {
+            return true;
+        }
+        // Held: renaming frees the name now, and the renamed file goes at the next restart.
+        if (IsHeldError(GetLastError()) && MoveAside(path))
+        {
+            *needsReboot = true;
             return true;
         }
         if (GetTickCount64() >= deadline)
@@ -453,19 +631,11 @@ int Install()
         }
     }
 
-    // The shell is what holds the proxy open, so it goes first. On a first install nothing is held and this only
-    // costs the user a shell restart they would need anyway for the engine to start.
-    bool shellWasRunning = IsShellRunning();
-    if (shellWasRunning)
-    {
-        StopShell();
-    }
-
+    // Nothing is stopped yet: files the shell holds are moved aside, and the shell is restarted once at the end.
     if (!CreateDirectoryW(target.c_str(), nullptr) && GetLastError() != ERROR_ALREADY_EXISTS)
     {
         DWORD error = GetLastError();
         Say(L"The install folder could not be created:\n" + target + L"\n\n" + DescribeError(error), MB_ICONERROR);
-        WaitForShell(15000);
         return 1;
     }
 
@@ -475,7 +645,6 @@ int Install()
         if (!PlacePayload(item, source, target, &error))
         {
             Say(std::wstring(L"Could not write ") + item.name + L":\n" + DescribeError(error), MB_ICONERROR);
-            WaitForShell(15000);
             return 1;
         }
     }
@@ -487,7 +656,6 @@ int Install()
         Say(L"Could not write:\n" + proxy + L"\n\n" + DescribeError(error) +
                 L"\n\nNothing has been left behind in the Windows folder.",
             MB_ICONERROR);
-        WaitForShell(15000);
         return 1;
     }
 
@@ -498,12 +666,8 @@ int Install()
     RemoveSettingsShortcuts();
     CreateSettingsShortcut((target + L"\\" _T(CORE_DLL_NAME)).c_str(), TRUE);
 
-    // A shell started before the proxy landed is running unpatched, so it is sent round once more.
-    if (IsShellRunning())
-    {
-        StopShell();
-    }
-    WaitForShell(20000);
+    // The one restart: the shell comes back and loads the proxy.
+    RestartShell();
 
     Say(std::wstring(kProductTitle) + L" is installed.\n\nFile Explorer has been restarted. Right-click the "
         L"taskbar and choose Properties, or run the settings from:\n" + target);
@@ -519,11 +683,6 @@ int Uninstall()
     {
         Say(L"The install locations could not be determined.", MB_ICONERROR);
         return 1;
-    }
-
-    if (IsShellRunning())
-    {
-        StopShell();
     }
 
     bool needsReboot = false;
@@ -572,7 +731,8 @@ int Uninstall()
 
     RegDeleteKeyExW(HKEY_LOCAL_MACHINE, kUninstallKey, KEY_WOW64_64KEY, 0);
 
-    WaitForShell(20000);
+    // The shell still has the engine loaded from the renamed proxy; a restart brings it back without it.
+    RestartShell();
 
     if (anyFailed)
     {
