@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+    inject: a development tool that loads the engine into the running shell without installing it.
+    Deliberately not shipped to users; it exists so a build can be tried and dropped in seconds.
+  -->
+  <Import Project="..\..\build\props\shared.props" />
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A7D9283A-B3C4-4506-E0F1-6C7D8E9FA0B1}</ProjectGuid>
+    <RootNamespace>inject</RootNamespace>
+    <ProjectName>inject</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="..\..\build\props\configuration.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="..\..\build\props\targets.props" />
+  <PropertyGroup>
+    <TargetName>sp_inject</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="inject.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

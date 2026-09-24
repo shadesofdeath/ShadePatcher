@@ -1,0 +1,1184 @@
+Windows Registry Editor Version 5.00
+
+
+;M ShadePatcher
+;q
+
+;T %R:1001%
+;a %R:1003%
+;e %R:1004%
+;e %R:1005%
+;e %R:1006%
+;e
+;a %R:1007%
+;e %R:1008%
+;e %R:1009%
+;e %R:1010%
+;e
+;a %R:1011%
+;e %ENGINESTATUSSTRING%
+[HKEY_CURRENT_USER\Software\ShadePatcher]
+;b %R:1015%
+;"Virtualized_{7A2C3F1E-4B8D-4E62-9C5A-1F0D6B8E2A47}_StartAtLogon"=dword:00000000
+;e %R:1016%
+;e
+;e %R:1002%
+;y %R:1017% 🡕
+;https://github.com/shadesofdeath/ShadePatcher
+
+
+;T %R:1301%
+;e %R:1302%
+;a %R:1303%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\tray-show-all-icons]
+;b %R:1110%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\tray-show-all-icons]
+;c 3 %R:1111%
+;x 0 %R:1112%
+;x 1 %R:1113%
+;x 2 %R:1114%
+"Mode"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\tray-icons-rebroadcast]
+;b %R:1120%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\tray-icons-rebroadcast]
+;c 4 %R:1121%
+;x 3 %R:310%
+;x 5 %R:311%
+;x 10 %R:312%
+;x 20 %R:313%
+"DelaySeconds"=dword:00000005
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\tray-icons-rebroadcast]
+;c 3 %R:1122%
+;x 1 %R:1123%
+;x 2 %R:1124%
+;x 3 %R:1125%
+"RepeatCount"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-tray-system-icon-tweaks]
+;b %R:1600%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-tray-system-icon-tweaks]
+;b %R:1601%
+"HideVolume"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-tray-system-icon-tweaks]
+;b %R:1602%
+"HideNetwork"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-tray-system-icon-tweaks]
+;b %R:1603%
+"HideBattery"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-tray-system-icon-tweaks]
+;b %R:1604%
+"HideMicrophone"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-tray-system-icon-tweaks]
+;b %R:1605%
+"HideLocation"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-tray-system-icon-tweaks]
+;b %R:1606%
+"HideLanguageBar"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-tray-system-icon-tweaks]
+;c 3 %R:1607%
+;x 0 %R:1608%
+;x 1 %R:1609%
+;x 2 %R:1610%
+"BellMode"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-tray-system-icon-tweaks]
+;b %R:1611%
+"HideShowDesktopButton"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-tray-system-icon-tweaks]
+;c 7 %R:1612%
+;x 0 %R:1613%
+;x 4 4
+;x 8 8
+;x 12 12
+;x 16 16
+;x 24 24
+;x 32 32
+"ShowDesktopButtonWidth"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-notification-icon-spacing]
+;b %R:1620%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-notification-icon-spacing]
+;c 8 %R:1621%
+;x 16 16 px
+;x 18 18 px
+;x 20 20 px
+;x 24 24 px
+;x 28 28 px
+;x 32 %R:1622%
+;x 36 36 px
+;x 40 40 px
+"NotificationIconWidth"=dword:00000020
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-notification-icon-spacing]
+;c 3 %R:1623%
+;x 1 %R:1624%
+;x 2 2
+;x 3 3
+"NotificationIconRows"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-notification-icon-spacing]
+;c 6 %R:1625%
+;x 24 24 px
+;x 28 28 px
+;x 32 32 px
+;x 36 36 px
+;x 40 %R:1626%
+;x 48 48 px
+"OverflowIconWidth"=dword:00000028
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-notification-icon-spacing]
+;c 6 %R:1627%
+;x 3 3
+;x 4 4
+;x 5 %R:1628%
+;x 6 6
+;x 8 8
+;x 10 10
+"OverflowIconsPerRow"=dword:00000005
+;a %R:1304%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-empty-space-clicks]
+;b %R:1310%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-empty-space-clicks]
+;c 7 %R:1311%
+;x 0 %R:1313%
+;x 1 %R:1314%
+;x 2 %R:1315%
+;x 3 %R:1316%
+;x 4 %R:1317%
+;x 5 %R:1318%
+;x 6 %R:1319%
+"DoubleClickAction"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-empty-space-clicks]
+;c 7 %R:1312%
+;x 0 %R:1313%
+;x 1 %R:1314%
+;x 2 %R:1315%
+;x 3 %R:1316%
+;x 4 %R:1317%
+;x 5 %R:1318%
+;x 6 %R:1319%
+"MiddleClickAction"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-empty-space-clicks]
+;w %R:1317%
+;%R:1317%
+;
+"CustomCommand"=""
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-volume-control]
+;b %R:1320%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-volume-control]
+;c 4 %R:1321%
+;x 1 %R:1322%
+;x 2 %R:1323%
+;x 5 %R:1324%
+;x 10 %R:1325%
+"VolumeStep"=dword:00000002
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-volume-control]
+;c 2 %R:1326%
+;x 0 %R:1327%
+;x 1 %R:1328%
+"ScrollAreaMode"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-volume-control]
+;b %R:1329%
+"MiddleClickMute"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-button-click]
+;b %R:1340%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-button-click]
+;c 3 %R:1341%
+;x 0 %R:1342%
+;x 1 %R:1343%
+;x 2 %R:1344%
+"MultipleItemsBehavior"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-button-click]
+;c 4 %R:1345%
+;x 0 %R:1346%
+;x 1 %R:1347%
+;x 2 %R:1348%
+;x 3 %R:1349%
+"EndTaskKeys"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-wheel-cycle]
+;b %R:1330%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-wheel-cycle]
+;b %R:1331%
+"SkipMinimized"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-wheel-cycle]
+;b %R:1332%
+"WrapAround"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-wheel-cycle]
+;b %R:1333%
+"ReverseScrollingDirection"=dword:00000000
+;a %R:1305%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-icon-size]
+;b %R:1360%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-icon-size]
+;c 8 %R:1361%
+;x 34 34 px
+;x 40 40 px
+;x 44 44 px
+;x 48 %R:1364%
+;x 52 52 px
+;x 56 56 px
+;x 60 60 px
+;x 64 64 px
+"TaskbarHeight"=dword:00000030
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-icon-size]
+;c 7 %R:1362%
+;x 16 16 px
+;x 20 20 px
+;x 24 %R:1365%
+;x 28 28 px
+;x 32 32 px
+;x 36 36 px
+;x 40 40 px
+"IconSize"=dword:00000018
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-icon-size]
+;c 8 %R:1363%
+;x 28 28 px
+;x 32 32 px
+;x 36 36 px
+;x 40 40 px
+;x 44 %R:1366%
+;x 48 48 px
+;x 52 52 px
+;x 56 56 px
+"TaskbarButtonWidth"=dword:0000002c
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-thumbnail-size]
+;b %R:1640%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-thumbnail-size]
+;c 10 %R:1641%
+;x 0 %R:1377%
+;x 160 160 px
+;x 200 200 px
+;x 240 240 px
+;x 280 280 px
+;x 320 320 px
+;x 400 400 px
+;x 480 480 px
+;x 560 560 px
+;x 640 640 px
+"ThumbnailWidth"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-thumbnail-size]
+;c 10 %R:1642%
+;x 0 %R:1377%
+;x 100 100 px
+;x 120 120 px
+;x 150 150 px
+;x 180 180 px
+;x 210 210 px
+;x 240 240 px
+;x 300 300 px
+;x 360 360 px
+;x 420 420 px
+"ThumbnailHeight"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\legacy-tray-flyouts]
+;b %R:1670%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\legacy-tray-flyouts]
+;b %R:1671%
+"Clock"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\legacy-tray-flyouts]
+;b %R:1672%
+"Volume"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\legacy-tray-flyouts]
+;b %R:1673%
+"Power"=dword:00000000
+;e %R:1674%
+;e 
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-styler]
+;b %R:1650%
+"Enabled"=dword:00000000
+;e %R:1663%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-styler]
+;c 10 %R:1651%
+;x 0 %R:1652%
+;x 1 %R:1653%
+;x 2 %R:1654%
+;x 3 %R:1655%
+;x 4 %R:1656%
+;x 5 %R:1657%
+;x 6 %R:1658%
+;x 7 %R:1659%
+;x 8 %R:1660%
+;x 9 %R:1661%
+"Theme"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-start-button-position]
+;b %R:1380%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-start-button-position]
+;b %R:1381%
+"SearchAndTaskViewOnLeft"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-start-button-position]
+;b %R:1382%
+"StartMenuOnLeft"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-labels]
+;b %R:1370%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-labels]
+;c 3 %R:1371%
+;x 0 %R:1372%
+;x 1 %R:1373%
+;x 2 %R:1374%
+"Mode"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-labels]
+;c 5 %R:1375%
+;x 0 %R:1377%
+;x 30 30 px
+;x 50 50 px
+;x 80 80 px
+;x 100 100 px
+"MinimumTaskbarItemWidth"=dword:00000032
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-labels]
+;c 7 %R:1376%
+;x 0 %R:1377%
+;x 120 120 px
+;x 140 140 px
+;x 160 160 px
+;x 176 176 px
+;x 200 200 px
+;x 240 240 px
+"MaximumTaskbarItemWidth"=dword:000000b0
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-count-badges]
+;b %R:1630%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-count-badges]
+;c 2 %R:1631%
+;x 0 %R:1632%
+;x 1 %R:1633%
+"Style"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-count-badges]
+;c 3 %R:1634%
+;x 0 %R:1635%
+;x 1 %R:1636%
+;x 2 %R:1637%
+"Position"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-count-badges]
+;c 5 %R:1638%
+;x 1 1
+;x 2 2
+;x 3 3
+;x 4 4
+;x 5 5
+"MinimumCount"=dword:00000002
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-count-badges]
+;w %R:1639%
+;%R:1639%
+;
+"BadgeColor"=""
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-clock-customization]
+;b %R:1350%
+"Enabled"=dword:00000000
+;e %R:1359%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-clock-customization]
+;o 7 %R:1351%
+;x |%R:1680%
+;x HH:mm|HH:mm  (14:05)
+;x HH:mm:ss|HH:mm:ss  (14:05:09)
+;x H:mm|H:mm  (9:05)
+;x h:mm tt|h:mm tt  (2:05 PM)
+;x h:mm:ss tt|h:mm:ss tt  (2:05:09 PM)
+;x *|%R:1681%|%R:1694%
+"TimeFormat"=""
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-clock-customization]
+;o 11 %R:1352%
+;x |%R:1680%
+;x dd.MM.yyyy|dd.MM.yyyy  (22.09.2026)
+;x d.M.yyyy|d.M.yyyy  (22.9.2026)
+;x dd.MM.yy|dd.MM.yy  (22.09.26)
+;x yyyy-MM-dd|yyyy-MM-dd  (2026-09-22)
+;x dd/MM/yyyy|dd/MM/yyyy  (22/09/2026)
+;x MM/dd/yyyy|MM/dd/yyyy  (09/22/2026)
+;x d MMMM yyyy|d MMMM yyyy
+;x ddd, d MMM|ddd, d MMM
+;x dddd, d MMMM|dddd, d MMMM
+;x *|%R:1681%|%R:1695%
+"DateFormat"=""
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-clock-customization]
+;o 4 %R:1353%
+;x |%R:1680% (dddd)
+;x dddd|%R:1684%
+;x ddd|%R:1685%
+;x *|%R:1681%|%R:1696%
+"WeekdayFormat"=""
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-clock-customization]
+;o 5 %R:1354%
+;x |%R:1680%  (%time%)
+;x %time% %weekday%|%time% %weekday%
+;x %weekday% %time%|%weekday% %time%
+;x -|%R:1683%
+;x *|%R:1681%|%R:1697%
+"TopLine"=""
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-clock-customization]
+;o 7 %R:1355%
+;x |%R:1680%  (%date%)
+;x %weekday% %date%|%weekday% %date%
+;x %weekday%, %date%|%weekday%, %date%
+;x %date% %weekday%|%date% %weekday%
+;x %weekday%|%weekday%
+;x -|%R:1683%
+;x *|%R:1681%|%R:1697%
+"BottomLine"=""
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-clock-customization]
+;o 4 %R:1356%
+;x |%R:1682%
+;x %weekday%|%weekday%
+;x %timezone%|%timezone%
+;x *|%R:1681%|%R:1697%
+"MiddleLine"=""
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-clock-customization]
+;c 6 %R:1357%
+;x 0 %R:1377%
+;x 10 10
+;x 11 11
+;x 12 12
+;x 14 14
+;x 16 16
+"FontSize"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\taskbar-clock-customization]
+;o 10 %R:1358%
+;x |%R:1680%
+;x FFFFFF|%R:1686%  (FFFFFF)
+;x 000000|%R:1687%  (000000)
+;x C8C8C8|%R:1688%  (C8C8C8)
+;x 4CC2FF|%R:1689%  (4CC2FF)
+;x 6CCB5F|%R:1690%  (6CCB5F)
+;x FFD700|%R:1691%  (FFD700)
+;x FFA500|%R:1692%  (FFA500)
+;x FF6B6B|%R:1693%  (FF6B6B)
+;x *|%R:1681%|%R:1698%
+"TextColor"=""
+
+
+;T %R:1401%
+;e %R:1402%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\context-menu-preloader]
+;b %R:1140%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\context-menu-preloader]
+;c 4 %R:1141%
+;x 5 %R:311%
+;x 10 %R:312%
+;x 20 %R:313%
+;x 30 %R:314%
+"DelaySeconds"=dword:0000000a
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\explorer-auto-file-sizes]
+;b %R:1150% *
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\explorer-auto-file-sizes]
+;b %R:1151%
+"BinaryUnits"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\explorer-double-click-up]
+;b %R:1155%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\extension-change-no-warning]
+;b %R:1430%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\legacy-file-copy]
+;b %R:1470%
+"Enabled"=dword:00000000
+;e %R:1471%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\explorer-single-window-tabs]
+;b %R:1410%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\explorer-single-window-tabs]
+;b %R:1411%
+"BringToFront"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\file-explorer-reopen-closed-tab]
+;b %R:1420%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\hide-home-gallery-explorer]
+;b %R:1460%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\hide-home-gallery-explorer]
+;b %R:1461%
+"HideHome"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\hide-home-gallery-explorer]
+;b %R:1462%
+"HideGallery"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\hide-home-gallery-explorer]
+;b %R:1463%
+"HideOneDrive"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\hide-home-gallery-explorer]
+;w %R:1464%
+;%R:1464%
+;
+"CustomLabels"=""
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1440%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1441%
+"HideShare"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1442%
+"HideCopyAsPath"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1443%
+"HideOpenInTerminal"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1444%
+"HideAddToFavorites"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1445%
+"HideCopilot"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1446%
+"HideRotate"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1447%
+"HideSetAsBackground"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1448%
+"HideGiveAccessTo"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1449%
+"HideRestorePreviousVersions"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1450%
+"HideSendTo"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1451%
+"HideOpenWith"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1452%
+"HideOneDrive"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1453%
+"HideDefender"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1454%
+"HideDesigner"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1455%
+"HideClipchamp"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1456%
+"HidePinToStart"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1457%
+"HidePinToQuickAccess"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;b %R:1458%
+"HideEditInNotepad"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\remove-context-menu-items]
+;w %R:1459%
+;%R:1459%
+;
+"CustomLabels"=""
+
+
+;T %R:1501%
+;e %R:1502%
+;a %R:1503%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\desktop-toggle-icons]
+;b %R:1130%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\desktop-icons-view]
+;b %R:1520%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\desktop-icons-view]
+;c 4 %R:1521%
+;x 3 %R:1522%
+;x 1 %R:1523%
+;x 2 %R:1524%
+;x 4 %R:1525%
+"View"=dword:00000003
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\desktop-icons-view]
+;c 3 %R:1526%
+;x 300 %R:1527%
+;x 500 %R:1528%
+;x 800 %R:1529%
+"ColumnWidth"=dword:000001f4
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\hide-desktop-icon-text]
+;b %R:1510%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\hide-desktop-icon-text]
+;b %R:1511%
+"HideText"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\hide-desktop-icon-text]
+;b %R:1512%
+"HideArrows"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\desktop-icon-selection-style]
+;b %R:1550%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\desktop-icon-selection-style]
+;c 5 %R:1551%
+;x 0 %R:1552%
+;x 4 4 px
+;x 8 8 px
+;x 12 12 px
+;x 16 16 px
+"CornerRadius"=dword:00000008
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\desktop-icon-selection-style]
+;c 5 %R:1553%
+;x 20 20
+;x 40 40
+;x 60 60
+;x 80 80
+;x 100 100
+"Opacity"=dword:00000028
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\desktop-icon-selection-style]
+;c 4 %R:1554%
+;x 0 %R:1555%
+;x 1 %R:1556%
+;x 2 %R:1557%
+;x 3 %R:1558%
+"BorderStyle"=dword:00000002
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\desktop-icon-selection-style]
+;c 5 %R:1559%
+;x 0 %R:1560%
+;x 2 2 px
+;x 4 4 px
+;x 8 8 px
+;x 12 12 px
+"Padding"=dword:00000004
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\desktop-icon-selection-style]
+;b %R:1561%
+"Glow"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\desktop-icon-selection-style]
+;w %R:1562%
+;%R:1563%
+;
+"SelectionColor"=""
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\transparent-desktop-icons-spotlight]
+;b %R:1570%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\transparent-desktop-icons-spotlight]
+;c 7 %R:1571%
+;x 0 %R:1574%
+;x 10 10
+;x 20 20
+;x 35 35
+;x 50 50
+;x 65 65
+;x 80 80
+"IdleOpacity"=dword:00000023
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\transparent-desktop-icons-spotlight]
+;c 7 %R:1572%
+;x 0 %R:1576%
+;x 150 150 ms
+;x 300 300 ms
+;x 500 500 ms
+;x 800 800 ms
+;x 1200 1200 ms
+;x 2000 2000 ms
+"FadeMs"=dword:0000012c
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\transparent-desktop-icons-spotlight]
+;c 6 %R:1573%
+;x 0 %R:1575%
+;x 120 120 px
+;x 180 180 px
+;x 250 250 px
+;x 350 350 px
+;x 500 500 px
+"SpotlightRadius"=dword:00000000
+;a %R:1504%
+;e %R:1505%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\start-menu-all-apps]
+;b %R:1530%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\win11-power-buttons]
+;b %R:1540%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\win11-power-buttons]
+;b %R:1541%
+"ShowShutdown"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\win11-power-buttons]
+;b %R:1542%
+"ShowRestart"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\win11-power-buttons]
+;b %R:1543%
+"ShowSignOut"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\win11-power-buttons]
+;b %R:1544%
+"ShowSleep"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\win11-power-buttons]
+;b %R:1545%
+"ShowHibernate"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\win11-power-buttons]
+;b %R:1546%
+"ShowLock"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\win11-power-buttons]
+;b %R:1547%
+"ConfirmBeforeAction"=dword:00000000
+
+
+;T %R:1901%
+;e %R:1902%
+;e %R:1903%
+;e %R:1927%
+;e 
+;a %R:1904%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:1910%
+"Enabled"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 3 %R:1911%
+;x 0 %R:1912%
+;x 1 %R:1913%
+;x 2 %R:1914%
+"Position"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 7 %R:1918%
+;x 0 %R:1925%
+;x 4 4 px
+;x 8 8 px
+;x 12 %R:1926%
+;x 16 16 px
+;x 24 24 px
+;x 32 32 px
+"EdgeGap"=dword:0000000c
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 2 %R:1919%
+;x 0 %R:1923%
+;x 1 %R:1924%
+"DefaultView"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:1915%
+"ShowRecent"=dword:00000001
+;e %R:1916%
+;e %R:1917%
+;e 
+;a %R:1905%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:1920%
+"StartButton"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:1921%
+"WinKey"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:1922%
+"ShiftClickWindows"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:1928%
+"FullscreenGuard"=dword:00000001
+;e 
+;a %R:1906%
+;e %R:1930%
+;u %R:1931%
+;resetpins
+;u %R:1932%
+;resethidden
+
+
+;T %R:2401%
+;e %R:2402%
+;e 
+;a %R:2403%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 7 %R:2410%
+;x 0 %R:2411%
+;x 1 %R:2412%
+;x 2 %R:2413%
+;x 3 %R:2439%
+;x 4 %R:2440%
+;x 5 %R:2441%
+;x 6 %R:2446%
+"Theme"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 8 %R:2447%
+;x 16 16:00
+;x 17 17:00
+;x 18 18:00
+;x 19 19:00
+;x 20 20:00
+;x 21 21:00
+;x 22 22:00
+;x 23 23:00
+"DarkFrom"=dword:00000013
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 7 %R:2448%
+;x 4 04:00
+;x 5 05:00
+;x 6 06:00
+;x 7 07:00
+;x 8 08:00
+;x 9 09:00
+;x 10 10:00
+"LightFrom"=dword:00000007
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 3 %R:2415%
+;x 0 %R:2416%
+;x 1 %R:2417%
+;x 2 %R:2442%
+"Background"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 6 %R:2418%
+;x 50 50 %
+;x 60 60 %
+;x 70 70 %
+;x 80 %R:2414%
+;x 88 88 %
+;x 95 95 %
+"Opacity"=dword:00000050
+;e %R:2419%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 8 %R:2420%
+;x 0 %R:2445%
+;x 1 %R:2422%
+;x 2 %R:2423%
+;x 3 %R:2424%
+;x 4 %R:2425%
+;x 5 %R:2426%
+;x 6 %R:2427%
+;x 7 %R:2428%
+"Accent"=dword:00000000
+;e 
+;a %R:2449%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;w %R:2450%
+;@image
+;%R:2456%
+"BackgroundImage"=""
+;u %R:2457%
+;clearimage
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 5 %R:2452%
+;x 0 %R:2453%
+;x 10 10 px
+;x 20 20 px
+;x 40 40 px
+;x 60 60 px
+"ImageBlur"=dword:00000014
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 5 %R:2454%
+;x 30 30 %
+;x 45 45 %
+;x 55 55 %
+;x 70 70 %
+;x 85 85 %
+"ImageTint"=dword:00000037
+;e %R:2455%
+;e 
+;a %R:2404%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 6 %R:2430%
+;x 0 %R:2431%
+;x 8 8 px
+;x 12 12 px
+;x 16 %R:2429%
+;x 20 20 px
+;x 24 24 px
+"CornerRadius"=dword:00000010
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2432%
+"Shadow"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 3 %R:2433%
+;x 0 %R:2434%
+;x 1 %R:2435%
+;x 2 %R:2436%
+"Font"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 5 %R:2437%
+;x 85 85 %
+;x 90 90 %
+;x 100 %R:2438%
+;x 110 110 %
+;x 125 125 %
+"Scale"=dword:00000064
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 5 %R:2443%
+;x 90 90 %
+;x 100 %R:2444%
+;x 110 110 %
+;x 120 120 %
+;x 130 130 %
+"FontSize"=dword:00000064
+
+
+;T %R:2501%
+;e %R:2502%
+;e 
+;a %R:2503%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 5 %R:2510%
+;x 4 4
+;x 5 %R:2505%
+;x 6 6
+;x 7 7
+;x 8 8
+"Columns"=dword:00000005
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 7 %R:2511%
+;x 32 32 px
+;x 36 36 px
+;x 40 40 px
+;x 44 %R:2512%
+;x 48 48 px
+;x 56 56 px
+;x 64 64 px
+"IconSize"=dword:0000002c
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2513%
+"ShowLabels"=dword:00000001
+;e 
+;a %R:2504%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 4 %R:2514%
+;x 20 20 px
+;x 24 24 px
+;x 28 %R:2515%
+;x 32 32 px
+"ListIconSize"=dword:0000001c
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 5 %R:2516%
+;x 500 500 px
+;x 600 %R:2517%
+;x 700 700 px
+;x 800 800 px
+;x 900 900 px
+"MaxHeight"=dword:00000258
+;e %R:2518%
+;e 
+;a %R:2520%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2521%
+"ShowSearch"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2523%
+"ShowTitle"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2524%
+"ShowFooter"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2525%
+"ShowAccount"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2526%
+"ShowUserName"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2527%
+"ShowPower"=dword:00000001
+;e %R:2522%
+
+
+;T %R:2601%
+;e %R:2602%
+;e 
+;a %R:2603%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 4 %R:2610%
+;x 0 %R:2611%
+;x 1 %R:2612%
+;x 2 %R:2613%
+;x 3 %R:2614%
+"Animation"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 2 %R:2615%
+;x 0 %R:2616%
+;x 1 %R:2617%
+"OpenStyle"=dword:00000000
+;e 
+;a %R:2604%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2620%
+"PowerLock"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2621%
+"PowerSignOut"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2622%
+"PowerSleep"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2623%
+"PowerHibernate"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2624%
+"PowerRestart"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2625%
+"PowerShutDown"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2630%
+"PowerUpdates"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2631%
+"PowerAdvanced"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2632%
+"PowerFirmware"=dword:00000000
+;e %R:2633%
+;e 
+;a %R:2634%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 5 %R:2635%
+;x 0 %R:2636%
+;x 1 %R:2637%
+;x 2 %R:2638%
+;x 3 %R:2639%
+;x 4 %R:2640%
+"MiddleClick"=dword:00000000
+;e %R:2626%
+
+
+;T %R:2701%
+;e %R:2702%
+;e 
+;a %R:2703%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2710%
+"SearchSettings"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2711%
+"SearchCalculator"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2712%
+"SearchCommands"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2730%
+"SearchFiles"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2734%
+"SearchWindows"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2735%
+"SearchHistory"=dword:00000001
+;u %R:2736%
+;clearhistory
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 4 %R:2731%
+;x 4 4
+;x 6 6
+;x 8 8
+;x 10 10
+"FileCount"=dword:00000006
+;e %R:2713%
+;e 
+;a %R:2704%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2714%
+"ShowMostUsed"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;c 5 %R:2715%
+;x 3 3
+;x 4 4
+;x 5 5
+;x 6 6
+;x 8 8
+"MostUsedCount"=dword:00000004
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2732%
+"ShowNewApps"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2737%
+"ShowQuickSettings"=dword:00000001
+;e %R:2738%
+;e %R:2733%
+;e %R:2716%
+;e 
+;a %R:2705%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2720%
+"ShortcutExplorer"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2721%
+"ShortcutDocuments"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2722%
+"ShortcutDownloads"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2723%
+"ShortcutPictures"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2724%
+"ShortcutMusic"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2725%
+"ShortcutVideos"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2726%
+"ShortcutUserFolder"=dword:00000000
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\custom-start-menu]
+;b %R:2727%
+"ShortcutSettings"=dword:00000001
+
+
+;T %R:1201%
+;e %R:1202%
+;e %R:1208%
+;e
+;k
+
+;T %R:1206%
+;e %R:1207%
+;e %R:1208%
+[HKEY_CURRENT_USER\Software\ShadePatcher\Mods\desktop-menu-entry]
+;b %R:1209%
+"Enabled"=dword:00000000
+;e
+;K
+
+;T %R:1801%
+;e %R:1802%
+;e 
+;a %R:1803%
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Search]
+;c 4 %R:1810%
+;x 0 %R:1811%
+;x 1 %R:1812%
+;x 2 %R:1813%
+;x 3 %R:1814%
+"SearchboxTaskbarMode"=dword:00000002
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+;b %R:1815%
+"ShowTaskViewButton"=dword:00000001
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+;b %R:1816%
+"TaskbarDa"=dword:00000001
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+;b %R:1817%
+"ShowCopilotButton"=dword:00000001
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+;b %R:1818%
+"ShowSecondsInSystemClock"=dword:00000000
+;e 
+;a %R:1804%
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32]
+;d %R:1820% *
+@=""
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]
+;b %R:1821% *
+"AltTabSettings"=dword:00000000
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+;b %R:1822%
+"EnableSnapAssistFlyout"=dword:00000001
+[HKEY_CURRENT_USER\Software\ShadePatcher]
+;b %R:1823%
+;"Virtualized_{7A2C3F1E-4B8D-4E62-9C5A-1F0D6B8E2A47}_NoShortcutSuffix"=dword:00000000
+;e %R:1824%
+
+
+;T %R:2301%
+[HKEY_CURRENT_USER\Software\ShadePatcher]
+;z 10001 %R:2302%
+"Language"=dword:00000000
+;u %R:2303%
+;import
+;u %R:2304%
+;export
+;u %R:2305%
+;reset
+
+
+;T %R:2001%
+;e %R:201%
+;e %VERSIONINFORMATIONSTRING%
+;t © 2026 shadesofdeath
+;e
+;e %R:2003%
+;e %AUTHORSSTRING%
+;t %OSVERSIONSTRING%
+;e
+;e %R:2007%
+;y %R:2006% 🡕
+;https://github.com/shadesofdeath/ShadePatcher
+
+
+
+;f
+;e %ENGINESTATUSSTRING%
+;u %R:2201% (*)
+;restart

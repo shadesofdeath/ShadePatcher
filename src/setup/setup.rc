@@ -1,0 +1,52 @@
+// setup.rc - version info and icon of sp_setup.exe.
+#include "winres.h"
+#include "version.h"
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+// Id 1, so Explorer and the Uninstall entry both show the product icon.
+1                       ICON                    "..\\common\\app.ico"
+
+// The product files themselves, so that this one executable installs on its own wherever it is run from. The
+// ids are SP_PAYLOAD_CORE and SP_PAYLOAD_GUI in setup.cpp. The build order (core and gui before setup, in the
+// solution) is what makes these paths exist when the resource compiler runs.
+#ifdef _DEBUG
+101                     RCDATA                  "..\\..\\build\\bin\\Debug\\ShadePatcher.dll"
+102                     RCDATA                  "..\\..\\build\\bin\\Debug\\sp_gui.dll"
+#else
+101                     RCDATA                  "..\\..\\build\\bin\\Release\\ShadePatcher.dll"
+102                     RCDATA                  "..\\..\\build\\bin\\Release\\sp_gui.dll"
+#endif
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION VER_FILE
+ PRODUCTVERSION VER_PRODUCT
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "shadesofdeath"
+            VALUE "FileDescription", "ShadePatcher Setup"
+            VER_FILE_STRING
+            VALUE "InternalName", "sp_setup.exe"
+            VALUE "LegalCopyright", "Copyright (C) 2026 shadesofdeath"
+            VALUE "OriginalFilename", "sp_setup.exe"
+            VALUE "ProductName", "ShadePatcher"
+            VER_PRODUCT_STRING
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END

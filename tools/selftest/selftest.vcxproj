@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+    selftest: a console program that links the engine sources and checks them outside explorer.exe.
+    It builds the same files core.vcxproj does, minus the mod host, so what is tested is what ships.
+  -->
+  <Import Project="..\..\build\props\shared.props" />
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D4A6F5E7-8091-42A3-BDCE-3F4A5B6C7D8E}</ProjectGuid>
+    <RootNamespace>selftest</RootNamespace>
+    <ProjectName>selftest</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="..\..\build\props\configuration.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="..\..\build\props\targets.props" />
+  <PropertyGroup>
+    <TargetName>sp_selftest</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\core;$(SolutionDir)libs\SlimDetours\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>ntdll.lib;$(SolutionDir)libs\SlimDetours\lib\x64\$(Configuration)\KNSoft.SlimDetours.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="selftest.c" />
+    <ClCompile Include="modtest.c" />
+  </ItemGroup>
+  <ItemGroup Label="Mods under test">
+    <ClCompile Include="..\..\src\core\mods\tray_show_all_icons.cpp" />
+    <ClCompile Include="..\..\src\core\mods\explorer_auto_file_sizes.cpp" />
+  </ItemGroup>
+  <ItemGroup Label="The engine under test">
+    <ClCompile Include="..\..\src\core\engine\hooks.c" />
+    <ClCompile Include="..\..\src\core\engine\input.c" />
+    <ClCompile Include="..\..\src\core\engine\log.c" />
+    <ClCompile Include="..\..\src\core\engine\modules.c" />
+    <ClCompile Include="..\..\src\core\engine\settings.c" />
+    <ClCompile Include="..\..\src\core\engine\surfaces.c" />
+    <ClCompile Include="..\..\src\core\engine\symbols.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\common\common.vcxproj">
+      <Project>{A1F3C2B4-5D6E-4F70-8A9B-0C1D2E3F4A5B}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

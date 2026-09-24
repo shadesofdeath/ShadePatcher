@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#DDE4E0}
+*{box-sizing:border-box}
+a{color:#1E9E78;text-decoration:none}a:hover{color:#16805F}
+input::placeholder{color:#8B918E}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:default}
+::-webkit-scrollbar{width:0;height:0}
+</style>
+</helmet>
+<div onClick="{{ closeFromDesktop }}" style="position:fixed;inset:0;font-family:'Figtree',system-ui,sans-serif;color:#1D2320;-webkit-font-smoothing:antialiased;background:radial-gradient(60% 70% at 15% 20%, #BFE3D3 0%, transparent 70%), radial-gradient(50% 60% at 85% 15%, #F6D9C4 0%, transparent 70%), radial-gradient(70% 70% at 60% 100%, #C9D6F2 0%, transparent 70%), #E9EDEA">
+
+  <div onClick="{{ stop }}" style="position:absolute;left:50%;bottom:64px;width:580px;max-width:calc(100vw - 24px);height:min(600px, calc(100vh - 80px));margin-left:{{ panelOffset }};display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:rgba(250,250,248,0.88);backdrop-filter:blur(40px) saturate(160%);-webkit-backdrop-filter:blur(40px) saturate(160%);border:1px solid rgba(255,255,255,0.9);box-shadow:0 30px 80px rgba(30,45,40,0.2), 0 4px 14px rgba(30,45,40,0.08);opacity:{{ panelOpacity }};transform:{{ panelTransform }};transition:opacity 160ms ease-out, transform 220ms cubic-bezier(.2,.9,.3,1.1);pointer-events:{{ panelPE }}">
+
+    <div style="padding:24px 24px 8px">
+      <label style="height:44px;display:flex;align-items:center;gap:10px;padding:0 16px;border-radius:22px;background:#fff;border:1px solid {{ searchBorder }};transition:border-color 120ms">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#6E7571" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="4.6"></circle><path d="M10.5 10.5 14 14"></path></svg>
+        <input ref="{{ inputRef }}" value="{{ query }}" onChange="{{ onQuery }}" placeholder="Ara" spellcheck="false" style="flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;font:inherit;font-size:15px;color:#1D2320;caret-color:#1E9E78"></input>
+        <sc-if value="{{ hasQuery }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ clear }}" style="width:22px;height:22px;border-radius:50%;background:#EEF0EE;color:#6E7571;font-size:13px;display:grid;place-items:center">×</button>
+        </sc-if>
+      </label>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 28px 4px;height:48px">
+      <span style="font-size:15px;font-weight:700">{{ title }}</span>
+      <sc-if value="{{ showToggle }}" hint-placeholder-val="{{ true }}">
+        <button onClick="{{ flip }}" style="height:28px;padding:0 12px;border-radius:14px;font-size:13px;font-weight:500;color:#4A514D;background:rgba(29,35,32,0.05)" style-hover="background:rgba(29,35,32,0.09)">{{ toggleLabel }}</button>
+      </sc-if>
+    </div>
+
+    <div ref="{{ gridRef }}" style="flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;padding:4px 16px 12px">
+      <sc-if value="{{ gridMode }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px">
+          <sc-for list="{{ apps }}" as="a" hint-placeholder-count="15">
+            <button onClick="{{ a.open }}" onMouseEnter="{{ a.hover }}" style="height:96px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;background:{{ a.bg }};transition:background 80ms, transform 120ms" style-active="transform:scale(0.96)">
+              <span style="width:44px;height:44px;border-radius:13px;background:{{ a.grad }};display:grid;place-items:center;color:#fff;font-size:17px;font-weight:700;box-shadow:0 1px 0 rgba(255,255,255,0.35) inset, 0 3px 8px {{ a.shadow }}">{{ a.glyph }}</span>
+              <span style="font-size:12.5px;font-weight:500;color:#2B312E;max-width:96px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ a.name }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ listMode }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ rows }}" as="r" hint-placeholder-count="10">
+            <sc-if value="{{ r.isHead }}" hint-placeholder-val="{{ false }}">
+              <div style="height:30px;display:flex;align-items:flex-end;padding:0 12px 4px;font-size:12px;font-weight:700;color:#1E9E78">{{ r.label }}</div>
+            </sc-if>
+            <sc-if value="{{ r.isItem }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ r.open }}" onMouseEnter="{{ r.hover }}" style="height:44px;width:100%;border-radius:10px;display:flex;align-items:center;gap:12px;padding:0 12px;text-align:left;background:{{ r.bg }};transition:background 80ms">
+                <span style="width:28px;height:28px;flex:none;border-radius:8px;background:{{ r.grad }};display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700">{{ r.glyph }}</span>
+                <span style="font-size:14px;font-weight:500">{{ r.name }}</span>
+              </button>
+            </sc-if>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:60px 0;text-align:center;color:#8B918E;font-size:14px">“{{ query }}” için sonuç yok</div>
+      </sc-if>
+    </div>
+
+    <sc-if value="{{ showRecent }}" hint-placeholder-val="{{ true }}">
+      <div style="padding:0 24px 16px;display:flex;gap:8px;overflow:hidden">
+        <sc-for list="{{ recent }}" as="r" hint-placeholder-count="3">
+          <button onClick="{{ r.open }}" style="height:30px;flex:none;white-space:nowrap;border-radius:15px;padding:0 12px;display:flex;align-items:center;gap:7px;background:#fff;border:1px solid rgba(29,35,32,0.07);font-size:12px;color:#3A413D" style-hover="border-color:rgba(29,35,32,0.18)">
+            <span style="width:6px;height:6px;border-radius:50%;background:{{ r.c }}"></span>{{ r.n }}
+          </button>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <div style="height:60px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 16px 0 20px;background:rgba(236,239,236,0.6);border-top:1px solid rgba(29,35,32,0.06)">
+      <button onClick="{{ openAccount }}" style="height:40px;display:flex;align-items:center;gap:10px;padding:0 10px 0 6px;border-radius:20px" style-hover="background:rgba(29,35,32,0.05)">
+        <span style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#F2B38B,#E27D6A);color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px">{{ initial }}</span>
+        <span style="font-size:13px;font-weight:600">{{ userName }}</span>
+      </button>
+      <div style="position:relative">
+        <button onClick="{{ togglePower }}" title="Güç" style="width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:{{ powerBg }}" style-hover="background:rgba(29,35,32,0.06)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#2B312E" stroke-width="1.6" stroke-linecap="round"><path d="M8 1.8v5.6"></path><path d="M4.4 3.9a5.4 5.4 0 1 0 7.2 0"></path></svg>
+        </button>
+        <sc-if value="{{ powerOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;right:0;bottom:48px;width:172px;padding:6px;border-radius:12px;background:#fff;box-shadow:0 12px 32px rgba(30,45,40,0.16);border:1px solid rgba(29,35,32,0.06);display:flex;flex-direction:column">
+            <sc-for list="{{ power }}" as="p" hint-placeholder-count="4">
+              <button onClick="{{ p.go }}" style="height:36px;border-radius:8px;padding:0 12px;text-align:left;font-size:13px;font-weight:500" style-hover="background:rgba(29,35,32,0.05)">{{ p.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:50%;top:40%;transform:translateX(-50%);padding:10px 18px;border-radius:20px;background:rgba(255,255,255,0.85);box-shadow:0 8px 24px rgba(30,45,40,0.12);font-size:14px;font-weight:500">{{ toast }}</div>
+  </sc-if>
+
+  <div onClick="{{ stop }}" style="position:absolute;left:50%;bottom:10px;transform:translateX(-50%);height:46px;padding:0 6px;border-radius:16px;background:rgba(250,250,248,0.8);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,0.9);box-shadow:0 8px 24px rgba(30,45,40,0.12);display:flex;align-items:center;gap:4px">
+    <button onClick="{{ toggle }}" style="width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:{{ startBg }}" style-hover="background:rgba(29,35,32,0.06)">
+      <span style="display:grid;grid-template-columns:repeat(3,4px);gap:3px">
+        <sc-for list="{{ dots }}" as="d" hint-placeholder-count="9"><span style="width:4px;height:4px;border-radius:50%;background:#1E9E78"></span></sc-for>
+      </span>
+    </button>
+    <span style="width:1px;height:22px;background:rgba(29,35,32,0.1);margin:0 4px"></span>
+    <sc-for list="{{ dock }}" as="d" hint-placeholder-count="4">
+      <button onClick="{{ d.open }}" style="width:36px;height:36px;border-radius:11px;display:grid;place-items:center" style-hover="background:rgba(29,35,32,0.06)">
+        <span style="width:26px;height:26px;border-radius:8px;background:{{ d.grad }};color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700">{{ d.glyph }}</span>
+      </button>
+    </sc-for>
+    <span style="width:1px;height:22px;background:rgba(29,35,32,0.1);margin:0 4px"></span>
+    <span style="font-size:13px;font-weight:600;padding:0 10px;font-variant-numeric:tabular-nums">{{ time }}</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;position&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Orta&quot;,&quot;Sol&quot;],&quot;default&quot;:&quot;Orta&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showRecent&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;userName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Deniz Kaya&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const G = {
+  mint:['#3CC79B','#1E9E78'], sky:['#6BB8F5','#3A86E0'], coral:['#F59A7B','#E0624A'], sun:['#F7CB5E','#EBA02C'],
+  plum:['#B69AF2','#8465D8'], ink:['#4B5552','#2A302D'], rose:['#F29BB8','#D8638B'], teal:['#5CCBD0','#2C9EA8']
+};
+const APPS = [
+  ['Terminal','ink','›_'],['Kod','sky','{ }'],['Git','coral','G'],['Veritabanı','teal','D'],
+  ['Tarayıcı','sky','◐'],['E-posta','sun','@'],['Sohbet','mint','C'],['Belgeler','sky','B'],
+  ['Tablolar','mint','T'],['Sunum','coral','S'],['Notlar','sun','N'],['Çizim','rose','Ç'],
+  ['Fotoğraflar','coral','F'],['Müzik','rose','♪'],['Video','plum','▶'],['Dosyalar','sun','D'],
+  ['Ayarlar','ink','⚙'],['Görev Yöneticisi','teal','G'],['Mağaza','mint','M'],['Hesap Makinesi','ink','='],
+  ['Ekran Görüntüsü','teal','◳'],['Arşiv','sun','A'],['Takvim','coral','31'],['Hava Durumu','sky','☀']
+];
+const PINNED = ['Tarayıcı','Dosyalar','Terminal','Kod','E-posta','Müzik','Notlar','Fotoğraflar','Takvim','Ayarlar','Mağaza','Hesap Makinesi','Sohbet','Video','Hava Durumu'];
+const RECENT = [['rapor.docx','#3A86E0'],['tatil-01.jpg','#E0624A'],['main.cpp','#1E9E78']];
+const low = s => s.toLocaleLowerCase('tr');
+const byName = n => APPS.find(a => a[0] === n);
+const COLS = 5;
+
+class Component extends DCLogic {
+  state = { open:true, all:false, query:'', sel:0, now:new Date(), toast:'', powerOpen:false };
+  inputRef = React.createRef(); gridRef = React.createRef();
+
+  componentDidMount() {
+    this.t = setInterval(() => this.setState({ now:new Date() }), 10000);
+    this.k = e => this.key(e); window.addEventListener('keydown', this.k); this.focus();
+  }
+  componentWillUnmount() { clearInterval(this.t); window.removeEventListener('keydown', this.k); }
+  focus() { setTimeout(() => this.inputRef.current && this.inputRef.current.focus(), 30); }
+
+  list() {
+    const q = low(this.state.query.trim());
+    if (q) return APPS.filter(a => low(a[0]).includes(q));
+    if (!this.state.all) return PINNED.map(byName);
+    return [...APPS].sort((a,b) => a[0].localeCompare(b[0],'tr'));
+  }
+  isList() { return !this.state.query.trim() && this.state.all; }
+  launch(n) {
+    this.setState({ open:false, powerOpen:false, toast: n + ' açılıyor…' });
+    clearTimeout(this.tt); this.tt = setTimeout(() => this.setState({ toast:'' }), 1300);
+  }
+  setOpen(open) { this.setState({ open, query:'', sel:0, all:false, powerOpen:false }); if (open) this.focus(); }
+  key(e) {
+    if (e.key === 'Meta' || e.key === 'OS') { e.preventDefault(); return this.setOpen(!this.state.open); }
+    if (!this.state.open) return;
+    const L = this.list(), n = L.length, s = this.state.sel, cols = this.isList() ? 1 : COLS;
+    const mv = d => { e.preventDefault(); this.setState({ sel: Math.max(0, Math.min(n-1, s+d)) }, () => this.scroll()); };
+    if (e.key === 'Escape') { if (this.state.powerOpen) return this.setState({ powerOpen:false }); if (this.state.query) return this.setState({ query:'', sel:0 }); if (this.state.all) return this.setState({ all:false, sel:0 }); return this.setOpen(false); }
+    if (e.key === 'ArrowRight' && cols > 1) return mv(1);
+    if (e.key === 'ArrowLeft' && cols > 1) return mv(-1);
+    if (e.key === 'ArrowDown') return mv(cols);
+    if (e.key === 'ArrowUp') return mv(-cols);
+    if (e.key === 'Enter' && L[s]) this.launch(L[s][0]);
+  }
+  scroll() {
+    const el = this.gridRef.current; if (!el) return;
+    const b = el.querySelectorAll('button')[this.state.sel]; if (!b) return;
+    const top = b.offsetTop - el.offsetTop, bot = top + b.offsetHeight;
+    if (top < el.scrollTop) el.scrollTop = top - 6; else if (bot > el.scrollTop + el.clientHeight) el.scrollTop = bot - el.clientHeight + 6;
+  }
+
+  renderVals() {
+    const { open, all, query, sel, now, toast, powerOpen } = this.state;
+    const L = this.list(), q = !!query.trim(), listMode = this.isList();
+    const user = this.props.userName ?? 'Deniz Kaya';
+    const centered = (this.props.position ?? 'Orta') === 'Orta';
+    const icon = g => ({ grad:`linear-gradient(145deg, ${G[g][0]}, ${G[g][1]})`, shadow: G[g][1] + '40' });
+    const rows = []; let last = '';
+    if (listMode) L.forEach((a, i) => {
+      const c = a[0][0].toLocaleUpperCase('tr');
+      if (c !== last) { last = c; rows.push({ isHead:true, isItem:false, label:c }); }
+      rows.push({ isHead:false, isItem:true, name:a[0], glyph:a[2], ...icon(a[1]), bg: i === sel ? 'rgba(29,35,32,0.06)' : 'transparent',
+        open: () => this.launch(a[0]), hover: () => this.state.sel !== i && this.setState({ sel:i }) });
+    });
+    return {
+      panelOffset: centered ? '-290px' : 'calc(-50vw + 12px)',
+      panelOpacity: open ? 1 : 0, panelTransform: open ? 'translateY(0) scale(1)' : 'translateY(16px) scale(0.98)', panelPE: open ? 'auto' : 'none',
+      initial: user[0], userName: user,
+      query, hasQuery: q, inputRef: this.inputRef, gridRef: this.gridRef,
+      onQuery: e => this.setState({ query:e.target.value, sel:0 }), clear: () => { this.setState({ query:'', sel:0 }); this.focus(); },
+      searchBorder: q ? '#1E9E78' : 'rgba(29,35,32,0.08)',
+      title: q ? 'En iyi eşleşmeler' : all ? 'Tüm uygulamalar' : 'Sabitlenmiş',
+      showToggle: !q, toggleLabel: all ? '‹ Geri' : 'Tümü ›',
+      flip: () => { this.setState({ all:!all, sel:0 }); this.gridRef.current && (this.gridRef.current.scrollTop = 0); this.focus(); },
+      gridMode: !listMode, listMode, rows,
+      apps: listMode ? [] : L.map((a, i) => ({ name:a[0], glyph:a[2], ...icon(a[1]),
+        bg: i === sel ? 'rgba(29,35,32,0.06)' : 'transparent',
+        open: () => this.launch(a[0]), hover: () => this.state.sel !== i && this.setState({ sel:i }) })),
+      empty: q && L.length === 0,
+      showRecent: (this.props.showRecent ?? true) && !q && !all,
+      recent: RECENT.map(([n,c]) => ({ n, c, open: () => this.launch(n) })),
+      openAccount: () => this.launch('Hesap ayarları'),
+      powerOpen, powerBg: powerOpen ? 'rgba(29,35,32,0.08)' : 'transparent',
+      togglePower: () => this.setState({ powerOpen:!powerOpen }),
+      power: ['Kilitle','Uyku','Yeniden başlat','Kapat'].map(l => ({ label:l, go: () => this.launch(l) })),
+      toast, startBg: open ? 'rgba(30,158,120,0.12)' : 'transparent',
+      dots: Array.from({ length:9 }, (_, i) => i),
+      dock: ['Tarayıcı','Dosyalar','Terminal','Müzik'].map(n => { const a = byName(n); return { glyph:a[2], ...icon(a[1]), open: () => this.launch(n) }; }),
+      time: String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0'),
+      toggle: () => this.setOpen(!open), stop: e => e.stopPropagation(),
+      closeFromDesktop: () => open && this.setOpen(false)
+    };
+  }
+}
+</script>
+</body>
+</html>

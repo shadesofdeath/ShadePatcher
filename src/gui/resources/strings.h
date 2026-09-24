@@ -1,0 +1,585 @@
+#pragma once
+//
+// strings.h - ids of every localizable string of the settings window.
+//
+// settings.reg refers to these by number (%R:1001%), the language files (lang/*.rc) give each id its text.
+// Every id must have a text in EVERY language file. Group ids by page, 100 per page, so that new pages never
+// collide with existing ones.
+//
+
+// Product
+#define IDS_PRODUCTNAME                 201
+
+// Shared (301-399)
+#define IDS_LANG_FOLLOW_SYSTEM          301
+#define IDS_EXPORT_SUCCESS              302
+#define IDS_IMPORT_FAILED               303
+#define IDS_SECONDS_3                   310
+#define IDS_SECONDS_5                   311
+#define IDS_SECONDS_10                  312
+#define IDS_SECONDS_20                  313
+#define IDS_SECONDS_30                  314
+
+// Page: General (1001-1099)
+// The first page: what the product is, how to use it, and whether the engine is in the shell right now.
+#define IDS_PAGE_GENERAL                1001
+#define IDS_GENERAL_DESCRIPTION         1002    // the "(*) needs a restart" note
+#define IDS_GENERAL_HEADING_WELCOME     1003
+#define IDS_GENERAL_INTRO_1             1004
+#define IDS_GENERAL_INTRO_2             1005
+#define IDS_GENERAL_INTRO_3             1006
+#define IDS_GENERAL_HEADING_HOWTO       1007
+#define IDS_GENERAL_STEP_1              1008
+#define IDS_GENERAL_STEP_2              1009
+#define IDS_GENERAL_STEP_3              1010
+#define IDS_GENERAL_HEADING_STATUS      1011
+#define IDS_GENERAL_ENGINE_INSTALLED    1012    // %ENGINESTATUSSTRING%: the proxy in the Windows folder
+#define IDS_GENERAL_ENGINE_INJECTED     1013    // %ENGINESTATUSSTRING%: loaded by sp_inject or ZZStartup
+#define IDS_GENERAL_ENGINE_MISSING      1014    // %ENGINESTATUSSTRING%: not in the shell
+#define IDS_GENERAL_ENGINE_SAFEMODE     1018    // %ENGINESTATUSSTRING%: in the shell but the crash guard tripped
+#define IDS_GENERAL_ENGINE_RESTARTING   1019    // %ENGINESTATUSSTRING%: a restart is under way
+#define IDS_GENERAL_START_AT_LOGON      1015
+#define IDS_GENERAL_START_AT_LOGON_NOTE 1016
+#define IDS_GENERAL_LINK                1017
+
+// Page: Mods (1101-1199)
+// The page opens with a heading per area, then one block per mod: its toggle followed by its own options.
+// Ten ids are reserved per mod so a mod can grow options without renumbering the ones after it.
+#define IDS_PAGE_MODS                   1101
+#define IDS_MODS_DESCRIPTION            1102
+#define IDS_MODS_HEADING_TASKBAR        1103
+#define IDS_MODS_HEADING_DESKTOP        1104
+#define IDS_MODS_HEADING_EXPLORER       1105
+
+#define IDS_MOD_TRAYSHOWALL             1110
+#define IDS_MOD_TRAYSHOWALL_MODE        1111
+#define IDS_MOD_TRAYSHOWALL_MODE_0      1112
+#define IDS_MOD_TRAYSHOWALL_MODE_1      1113
+#define IDS_MOD_TRAYSHOWALL_MODE_2      1114
+
+#define IDS_MOD_TRAYREBROADCAST         1120
+#define IDS_MOD_TRAYREBROADCAST_DELAY   1121
+#define IDS_MOD_TRAYREBROADCAST_REPEAT  1122
+#define IDS_MOD_TRAYREBROADCAST_ONCE    1123
+#define IDS_MOD_TRAYREBROADCAST_TWICE   1124
+#define IDS_MOD_TRAYREBROADCAST_THRICE  1125
+
+#define IDS_MOD_DESKTOPTOGGLE           1130
+
+#define IDS_MOD_PRELOADER               1140
+#define IDS_MOD_PRELOADER_DELAY         1141
+
+#define IDS_MOD_AUTOSIZES               1150
+#define IDS_MOD_AUTOSIZES_BINARY        1151
+#define IDS_MOD_DOUBLECLICKUP           1155
+
+// The mods are spread over three pages, one per area. Each mod owns a block of ten ids inside its page's
+// range so it can grow options without renumbering the ones after it.
+
+// Page: Taskbar (1301-1399)
+#define IDS_PAGE_TASKBAR                1301
+#define IDS_TASKBAR_DESCRIPTION         1302
+#define IDS_TASKBAR_HEADING_TRAY        1303
+#define IDS_TASKBAR_HEADING_BEHAVIOUR   1304
+#define IDS_TASKBAR_HEADING_LOOK        1305
+#define IDS_MOD_TBCLICKS                1310
+#define IDS_MOD_TBCLICKS_DOUBLE         1311
+#define IDS_MOD_TBCLICKS_MIDDLE         1312
+#define IDS_MOD_TBCLICKS_ACT_NOTHING    1313
+#define IDS_MOD_TBCLICKS_ACT_DESKTOP    1314
+#define IDS_MOD_TBCLICKS_ACT_START      1315
+#define IDS_MOD_TBCLICKS_ACT_TASKMGR    1316
+#define IDS_MOD_TBCLICKS_ACT_COMMAND    1317
+#define IDS_MOD_TBCLICKS_ACT_MUTE       1318
+#define IDS_MOD_TBCLICKS_ACT_AUTOHIDE   1319
+#define IDS_MOD_TASKBARVOLUME           1320
+#define IDS_MOD_TASKBARVOLUME_STEP      1321
+#define IDS_MOD_TASKBARVOLUME_STEP_1    1322
+#define IDS_MOD_TASKBARVOLUME_STEP_2    1323
+#define IDS_MOD_TASKBARVOLUME_STEP_5    1324
+#define IDS_MOD_TASKBARVOLUME_STEP_10   1325
+#define IDS_MOD_TASKBARVOLUME_AREA      1326
+#define IDS_MOD_TASKBARVOLUME_AREA_0    1327
+#define IDS_MOD_TASKBARVOLUME_AREA_1    1328
+#define IDS_MOD_TASKBARVOLUME_MIDDLECLICK 1329
+#define IDS_MOD_WHEELCYCLE              1330
+#define IDS_MOD_WHEELCYCLE_SKIPMIN      1331
+#define IDS_MOD_WHEELCYCLE_WRAP         1332
+#define IDS_MOD_WHEELCYCLE_REVERSE      1333
+#define IDS_MOD_TBCLICK                 1340
+#define IDS_MOD_TBCLICK_GROUP           1341
+#define IDS_MOD_TBCLICK_GROUP_0         1342
+#define IDS_MOD_TBCLICK_GROUP_1         1343
+#define IDS_MOD_TBCLICK_GROUP_2         1344
+#define IDS_MOD_TBCLICK_ENDTASK         1345
+#define IDS_MOD_TBCLICK_ENDTASK_0       1346
+#define IDS_MOD_TBCLICK_ENDTASK_1       1347
+#define IDS_MOD_TBCLICK_ENDTASK_2       1348
+#define IDS_MOD_TBCLICK_ENDTASK_3       1349
+#define IDS_MOD_CLOCK                   1350
+#define IDS_MOD_CLOCK_TIMEFORMAT        1351
+#define IDS_MOD_CLOCK_DATEFORMAT        1352
+#define IDS_MOD_CLOCK_WEEKDAYFORMAT     1353
+#define IDS_MOD_CLOCK_TOPLINE           1354
+#define IDS_MOD_CLOCK_BOTTOMLINE        1355
+#define IDS_MOD_CLOCK_MIDDLELINE        1356
+#define IDS_MOD_CLOCK_FONTSIZE          1357
+#define IDS_MOD_CLOCK_TEXTCOLOR         1358
+#define IDS_MOD_CLOCK_HELP              1359
+#define IDS_MOD_CLOCK_P_DEFAULT         1680
+#define IDS_MOD_CLOCK_P_CUSTOM          1681
+#define IDS_MOD_CLOCK_P_NONE            1682
+#define IDS_MOD_CLOCK_P_KEEP            1683
+#define IDS_MOD_CLOCK_P_WDLONG          1684
+#define IDS_MOD_CLOCK_P_WDSHORT         1685
+#define IDS_MOD_CLOCK_P_WHITE           1686
+#define IDS_MOD_CLOCK_P_BLACK           1687
+#define IDS_MOD_CLOCK_P_GRAY            1688
+#define IDS_MOD_CLOCK_P_BLUE            1689
+#define IDS_MOD_CLOCK_P_GREEN           1690
+#define IDS_MOD_CLOCK_P_YELLOW          1691
+#define IDS_MOD_CLOCK_P_ORANGE          1692
+#define IDS_MOD_CLOCK_P_RED             1693
+#define IDS_MOD_CLOCK_Q_TIME            1694
+#define IDS_MOD_CLOCK_Q_DATE            1695
+#define IDS_MOD_CLOCK_Q_WEEKDAY         1696
+#define IDS_MOD_CLOCK_Q_LINE            1697
+#define IDS_MOD_CLOCK_Q_COLOR           1698
+#define IDS_MOD_STARTBUTTONPOS          1380
+#define IDS_MOD_STARTBUTTONPOS_OTHERS   1381
+#define IDS_MOD_STARTBUTTONPOS_MENUS    1382
+#define IDS_MOD_ICONSIZE                1360
+#define IDS_MOD_ICONSIZE_HEIGHT         1361
+#define IDS_MOD_ICONSIZE_ICON           1362
+#define IDS_MOD_ICONSIZE_WIDTH          1363
+#define IDS_MOD_ICONSIZE_HEIGHT_DEFAULT 1364
+#define IDS_MOD_ICONSIZE_ICON_DEFAULT   1365
+#define IDS_MOD_ICONSIZE_WIDTH_DEFAULT  1366
+#define IDS_MOD_TASKBARLABELS           1370
+#define IDS_MOD_TASKBARLABELS_MODE      1371
+#define IDS_MOD_TASKBARLABELS_MODE_0    1372
+#define IDS_MOD_TASKBARLABELS_MODE_1    1373
+#define IDS_MOD_TASKBARLABELS_MODE_2    1374
+#define IDS_MOD_TASKBARLABELS_MINWIDTH  1375
+#define IDS_MOD_TASKBARLABELS_MAXWIDTH  1376
+#define IDS_MOD_TASKBARLABELS_WINDEFAULT 1377
+
+// Page: File Explorer (1401-1499)
+#define IDS_PAGE_EXPLORER               1401
+#define IDS_EXPLORER_DESCRIPTION        1402
+#define IDS_MOD_SINGLEWINDOWTABS        1410
+#define IDS_MOD_SINGLEWINDOWTABS_FRONT  1411
+#define IDS_MOD_REOPENTAB               1420
+#define IDS_MOD_EXTNOWARN               1430
+#define IDS_MOD_REMOVEMENUITEMS         1440
+#define IDS_MOD_REMOVEMENUITEMS_SHARE   1441
+#define IDS_MOD_REMOVEMENUITEMS_COPYASPATH 1442
+#define IDS_MOD_REMOVEMENUITEMS_TERMINAL 1443
+#define IDS_MOD_REMOVEMENUITEMS_FAVORITES 1444
+#define IDS_MOD_REMOVEMENUITEMS_COPILOT 1445
+#define IDS_MOD_REMOVEMENUITEMS_ROTATE  1446
+#define IDS_MOD_REMOVEMENUITEMS_BACKGROUND 1447
+#define IDS_MOD_REMOVEMENUITEMS_GIVEACCESS 1448
+#define IDS_MOD_REMOVEMENUITEMS_PREVVERSIONS 1449
+#define IDS_MOD_REMOVEMENUITEMS_SENDTO  1450
+#define IDS_MOD_REMOVEMENUITEMS_OPENWITH 1451
+#define IDS_MOD_REMOVEMENUITEMS_ONEDRIVE 1452
+#define IDS_MOD_REMOVEMENUITEMS_DEFENDER 1453
+#define IDS_MOD_REMOVEMENUITEMS_DESIGNER 1454
+#define IDS_MOD_REMOVEMENUITEMS_CLIPCHAMP 1455
+#define IDS_MOD_REMOVEMENUITEMS_PINTOSTART 1456
+#define IDS_MOD_REMOVEMENUITEMS_QUICKACCESS 1457
+#define IDS_MOD_REMOVEMENUITEMS_NOTEPAD 1458
+#define IDS_MOD_REMOVEMENUITEMS_CUSTOM  1459
+#define IDS_MOD_HIDENAVITEMS            1460
+#define IDS_MOD_HIDENAVITEMS_HOME       1461
+#define IDS_MOD_HIDENAVITEMS_GALLERY    1462
+#define IDS_MOD_HIDENAVITEMS_ONEDRIVE   1463
+#define IDS_MOD_HIDENAVITEMS_CUSTOM     1464
+#define IDS_MOD_LEGACYCOPY              1470
+#define IDS_MOD_LEGACYCOPY_NOTE         1471
+
+// Page: Desktop and Start (1501-1599)
+#define IDS_PAGE_DESKTOP                1501
+#define IDS_DESKTOP_DESCRIPTION         1502
+#define IDS_DESKTOP_HEADING_DESKTOP     1503
+#define IDS_DESKTOP_HEADING_START       1504
+#define IDS_MOD_DESKTOPICONTEXT         1510
+#define IDS_MOD_DESKTOPICONTEXT_TEXT    1511
+#define IDS_MOD_DESKTOPICONTEXT_ARROWS  1512
+#define IDS_MOD_DESKTOPVIEW             1520
+#define IDS_MOD_DESKTOPVIEW_VIEW        1521
+#define IDS_MOD_DESKTOPVIEW_LIST        1522
+#define IDS_MOD_DESKTOPVIEW_DETAILS     1523
+#define IDS_MOD_DESKTOPVIEW_SMALL       1524
+#define IDS_MOD_DESKTOPVIEW_TILES       1525
+#define IDS_MOD_DESKTOPVIEW_COLWIDTH    1526
+#define IDS_MOD_DESKTOPVIEW_COL_NARROW  1527
+#define IDS_MOD_DESKTOPVIEW_COL_NORMAL  1528
+#define IDS_MOD_DESKTOPVIEW_COL_WIDE    1529
+#define IDS_DESKTOP_START_NOTE          1505    // why the Start menu mods may do nothing on this build
+#define IDS_MOD_STARTALLAPPS            1530
+#define IDS_MOD_STARTALLAPPS_NOTE       1532    // kept for older pages; the page uses 1505
+#define IDS_MOD_POWERBUTTONS            1540
+#define IDS_MOD_POWERBUTTONS_SHUTDOWN   1541
+#define IDS_MOD_POWERBUTTONS_RESTART    1542
+#define IDS_MOD_POWERBUTTONS_SIGNOUT    1543
+#define IDS_MOD_POWERBUTTONS_SLEEP      1544
+#define IDS_MOD_POWERBUTTONS_HIBERNATE  1545
+#define IDS_MOD_POWERBUTTONS_LOCK       1546
+#define IDS_MOD_POWERBUTTONS_CONFIRM    1547
+#define IDS_MOD_ICONSELSTYLE            1550
+#define IDS_MOD_ICONSELSTYLE_RADIUS     1551
+#define IDS_MOD_ICONSELSTYLE_RADIUS_NONE 1552
+#define IDS_MOD_ICONSELSTYLE_OPACITY    1553
+#define IDS_MOD_ICONSELSTYLE_BORDER     1554
+#define IDS_MOD_ICONSELSTYLE_BORDER_NONE 1555
+#define IDS_MOD_ICONSELSTYLE_BORDER_SOLID 1556
+#define IDS_MOD_ICONSELSTYLE_BORDER_DASHED 1557
+#define IDS_MOD_ICONSELSTYLE_BORDER_DOTTED 1558
+#define IDS_MOD_ICONSELSTYLE_PADDING    1559
+#define IDS_MOD_ICONSELSTYLE_PADDING_NONE 1560
+#define IDS_MOD_ICONSELSTYLE_GLOW       1561
+#define IDS_MOD_ICONSELSTYLE_COLOR      1562
+#define IDS_MOD_ICONSELSTYLE_COLOR_HINT 1563
+#define IDS_MOD_ICONSPOTLIGHT           1570
+#define IDS_MOD_ICONSPOTLIGHT_OPACITY   1571
+#define IDS_MOD_ICONSPOTLIGHT_FADE      1572
+#define IDS_MOD_ICONSPOTLIGHT_RADIUS    1573
+#define IDS_MOD_ICONSPOTLIGHT_HIDDEN    1574
+#define IDS_MOD_ICONSPOTLIGHT_WHOLE     1575
+#define IDS_MOD_ICONSPOTLIGHT_INSTANT   1576
+
+// Page: Taskbar, second block (1600-1699)
+#define IDS_MOD_TRAYICONS               1600
+#define IDS_MOD_TRAYICONS_VOLUME        1601
+#define IDS_MOD_TRAYICONS_NETWORK       1602
+#define IDS_MOD_TRAYICONS_BATTERY       1603
+#define IDS_MOD_TRAYICONS_MIC           1604
+#define IDS_MOD_TRAYICONS_LOCATION      1605
+#define IDS_MOD_TRAYICONS_LANGBAR       1606
+#define IDS_MOD_TRAYICONS_BELL          1607
+#define IDS_MOD_TRAYICONS_BELL_NEVER    1608
+#define IDS_MOD_TRAYICONS_BELL_WHENEMPTY 1609
+#define IDS_MOD_TRAYICONS_BELL_ALWAYS   1610
+#define IDS_MOD_TRAYICONS_SHOWDESKTOP_HIDE 1611
+#define IDS_MOD_TRAYICONS_SHOWDESKTOP_WIDTH 1612
+#define IDS_MOD_TRAYICONS_SHOWDESKTOP_DEFAULT 1613
+#define IDS_MOD_TRAYSPACING             1620
+#define IDS_MOD_TRAYSPACING_WIDTH       1621
+#define IDS_MOD_TRAYSPACING_WIDTH_DEFAULT 1622
+#define IDS_MOD_TRAYSPACING_ROWS        1623
+#define IDS_MOD_TRAYSPACING_ROWS_DEFAULT 1624
+#define IDS_MOD_TRAYSPACING_OVERFLOW    1625
+#define IDS_MOD_TRAYSPACING_OVERFLOW_DEFAULT 1626
+#define IDS_MOD_TRAYSPACING_PERROW      1627
+#define IDS_MOD_TRAYSPACING_PERROW_DEFAULT 1628
+#define IDS_MOD_TASKBARCOUNTBADGES      1630
+#define IDS_MOD_TASKBARCOUNTBADGES_STYLE 1631
+#define IDS_MOD_TASKBARCOUNTBADGES_STYLE_0 1632
+#define IDS_MOD_TASKBARCOUNTBADGES_STYLE_1 1633
+#define IDS_MOD_TASKBARCOUNTBADGES_POSITION 1634
+#define IDS_MOD_TASKBARCOUNTBADGES_POSITION_0 1635
+#define IDS_MOD_TASKBARCOUNTBADGES_POSITION_1 1636
+#define IDS_MOD_TASKBARCOUNTBADGES_POSITION_2 1637
+#define IDS_MOD_TASKBARCOUNTBADGES_MINCOUNT 1638
+#define IDS_MOD_TASKBARCOUNTBADGES_COLOR 1639
+#define IDS_MOD_THUMBSIZE               1640
+#define IDS_MOD_THUMBSIZE_WIDTH         1641
+#define IDS_MOD_THUMBSIZE_HEIGHT        1642
+#define IDS_MOD_STYLER                  1650
+#define IDS_MOD_STYLER_THEME            1651
+#define IDS_MOD_STYLER_THEME_NONE       1652
+#define IDS_MOD_STYLER_THEME_1          1653
+#define IDS_MOD_STYLER_THEME_2          1654
+#define IDS_MOD_STYLER_THEME_3          1655
+#define IDS_MOD_STYLER_THEME_4          1656
+#define IDS_MOD_STYLER_THEME_5          1657
+#define IDS_MOD_STYLER_THEME_6          1658
+#define IDS_MOD_STYLER_THEME_7          1659
+#define IDS_MOD_STYLER_THEME_8          1660
+#define IDS_MOD_STYLER_THEME_9          1661
+#define IDS_MOD_STYLER_CUSTOM           1662
+#define IDS_MOD_STYLER_HELP             1663
+#define IDS_MOD_LEGACYFLYOUTS           1670
+#define IDS_MOD_LEGACYFLYOUTS_CLOCK     1671
+#define IDS_MOD_LEGACYFLYOUTS_VOLUME    1672
+#define IDS_MOD_LEGACYFLYOUTS_POWER     1673
+#define IDS_MOD_LEGACYFLYOUTS_NOTE      1674
+
+// Page: System and classic UI (1801-1899): ExplorerPatcher-style switches that are plain registry values
+#define IDS_PAGE_SYSTEM                 1801
+#define IDS_SYSTEM_DESCRIPTION          1802
+#define IDS_SYSTEM_HEADING_BUTTONS      1803
+#define IDS_SYSTEM_HEADING_CLASSIC      1804
+#define IDS_SYSTEM_SEARCHBOX            1810
+#define IDS_SYSTEM_SEARCHBOX_HIDDEN     1811
+#define IDS_SYSTEM_SEARCHBOX_ICON       1812
+#define IDS_SYSTEM_SEARCHBOX_BOX        1813
+#define IDS_SYSTEM_SEARCHBOX_ICONLABEL  1814
+#define IDS_SYSTEM_TASKVIEW             1815
+#define IDS_SYSTEM_WIDGETS              1816
+#define IDS_SYSTEM_COPILOT              1817
+#define IDS_SYSTEM_CLOCKSECONDS         1818
+#define IDS_SYSTEM_CLASSICMENU          1820
+#define IDS_SYSTEM_CLASSICALTTAB        1821
+#define IDS_SYSTEM_SNAPFLYOUT           1822
+#define IDS_SYSTEM_NOSHORTCUTSUFFIX     1823
+#define IDS_SYSTEM_ARROWNOTE            1824
+
+// Page: Start menu (1901-1999): the custom-start-menu mod, ShadePatcher's own Start menu
+#define IDS_PAGE_STARTMENU              1901
+#define IDS_STARTMENU_DESCRIPTION       1902
+#define IDS_STARTMENU_NOTE              1903
+#define IDS_STARTMENU_HEADING_MENU      1904
+#define IDS_STARTMENU_HEADING_OPEN      1905
+#define IDS_STARTMENU_HEADING_PINNED    1906
+#define IDS_STARTMENU_ENABLE            1910
+#define IDS_STARTMENU_POSITION          1911
+#define IDS_STARTMENU_POSITION_AUTO     1912
+#define IDS_STARTMENU_POSITION_CENTER   1913
+#define IDS_STARTMENU_POSITION_LEFT     1914
+#define IDS_STARTMENU_RECENT            1915
+#define IDS_STARTMENU_RECENT_NOTE       1916
+#define IDS_STARTMENU_KEYS              1917
+#define IDS_STARTMENU_STARTBUTTON       1920
+#define IDS_STARTMENU_WINKEY            1921
+#define IDS_STARTMENU_SHIFTCLICK        1922
+#define IDS_STARTMENU_PINNED_HOWTO      1930
+#define IDS_STARTMENU_RESETPINS         1931
+
+// Start menu pages: General additions (1918-1927), Appearance (2401-2499), Layout (2501-2599),
+// Behaviour (2601-2699)
+#define IDS_STARTMENU_EDGEGAP           1918
+#define IDS_STARTMENU_EDGEGAP_NONE      1925
+#define IDS_STARTMENU_EDGEGAP_DEFAULT   1926
+#define IDS_STARTMENU_DEFAULTVIEW       1919
+#define IDS_STARTMENU_VIEW_PINNED       1923
+#define IDS_STARTMENU_VIEW_ALL          1924
+#define IDS_STARTMENU_MORE              1927
+#define IDS_PAGE_STARTMENU_LOOK         2401
+#define IDS_SMLOOK_DESCRIPTION          2402
+#define IDS_SMLOOK_HEADING_COLOR        2403
+#define IDS_SMLOOK_HEADING_SHAPE        2404
+#define IDS_SMLOOK_THEME                2410
+#define IDS_SMLOOK_THEME_SYSTEM         2411
+#define IDS_SMLOOK_THEME_LIGHT          2412
+#define IDS_SMLOOK_THEME_DARK           2413
+#define IDS_SMLOOK_BACKGROUND           2415
+#define IDS_SMLOOK_BG_OPAQUE            2416
+#define IDS_SMLOOK_BG_ACRYLIC           2417
+#define IDS_SMLOOK_OPACITY              2418
+#define IDS_SMLOOK_OPACITY_DEFAULT      2414
+#define IDS_SMLOOK_ACRYLIC_NOTE         2419
+#define IDS_SMLOOK_ACCENT               2420
+#define IDS_SMLOOK_ACCENT_DESIGN        2421
+#define IDS_SMLOOK_ACCENT_WINDOWS       2422
+#define IDS_SMLOOK_ACCENT_BLUE          2423
+#define IDS_SMLOOK_ACCENT_PURPLE        2424
+#define IDS_SMLOOK_ACCENT_CORAL         2425
+#define IDS_SMLOOK_ACCENT_PINK          2426
+#define IDS_SMLOOK_ACCENT_AMBER         2427
+#define IDS_SMLOOK_ACCENT_TEAL          2428
+#define IDS_SMLOOK_CORNER               2430
+#define IDS_SMLOOK_CORNER_NONE          2431
+#define IDS_SMLOOK_CORNER_DEFAULT       2429
+#define IDS_SMLOOK_SHADOW               2432
+#define IDS_SMLOOK_FONT                 2433
+#define IDS_SMLOOK_FONT_FIGTREE         2434
+#define IDS_SMLOOK_FONT_VARIABLE        2435
+#define IDS_SMLOOK_FONT_SEGOE           2436
+#define IDS_SMLOOK_SCALE                2437
+#define IDS_SMLOOK_SCALE_DEFAULT        2438
+#define IDS_PAGE_STARTMENU_LAYOUT       2501
+#define IDS_SMLAYOUT_DESCRIPTION        2502
+#define IDS_SMLAYOUT_HEADING_GRID       2503
+#define IDS_SMLAYOUT_HEADING_LIST       2504
+#define IDS_SMLAYOUT_COLUMNS            2510
+#define IDS_SMLAYOUT_COLUMNS_DEFAULT    2505
+#define IDS_SMLAYOUT_ICON               2511
+#define IDS_SMLAYOUT_ICON_DEFAULT       2512
+#define IDS_SMLAYOUT_LABELS             2513
+#define IDS_SMLAYOUT_LISTICON           2514
+#define IDS_SMLAYOUT_LISTICON_DEFAULT   2515
+#define IDS_SMLAYOUT_HEIGHT             2516
+#define IDS_SMLAYOUT_HEIGHT_DEFAULT     2517
+#define IDS_SMLAYOUT_HEIGHT_NOTE        2518
+#define IDS_PAGE_STARTMENU_BEHAVIOR     2601
+#define IDS_SMBEHAVIOR_DESCRIPTION      2602
+#define IDS_SMBEHAVIOR_HEADING_ANIM     2603
+#define IDS_SMBEHAVIOR_HEADING_POWER    2604
+#define IDS_SMBEHAVIOR_ANIMATION        2610
+#define IDS_SMBEHAVIOR_ANIM_SYSTEM      2611
+#define IDS_SMBEHAVIOR_ANIM_ON          2612
+#define IDS_SMBEHAVIOR_ANIM_FAST        2613
+#define IDS_SMBEHAVIOR_ANIM_OFF         2614
+#define IDS_SMBEHAVIOR_OPENSTYLE        2615
+#define IDS_SMBEHAVIOR_OPEN_SLIDE       2616
+#define IDS_SMBEHAVIOR_OPEN_FADE        2617
+#define IDS_SMBEHAVIOR_LOCK             2620
+#define IDS_SMBEHAVIOR_SIGNOUT          2621
+#define IDS_SMBEHAVIOR_SLEEP            2622
+#define IDS_SMBEHAVIOR_HIBERNATE        2623
+#define IDS_SMBEHAVIOR_RESTART          2624
+#define IDS_SMBEHAVIOR_SHUTDOWN         2625
+#define IDS_SMBEHAVIOR_HIBERNATE_NOTE   2626
+#define IDS_SMLOOK_THEME_MIDNIGHT       2439
+#define IDS_SMLOOK_THEME_GRAPHITE       2440
+#define IDS_SMLOOK_THEME_SAND           2441
+#define IDS_SMLOOK_BG_GLASS             2442
+#define IDS_SMLOOK_FONTSIZE             2443
+#define IDS_SMLOOK_FONTSIZE_DEFAULT     2444
+#define IDS_SMLOOK_ACCENT_THEME         2445
+#define IDS_SMLAYOUT_HEADING_SHOW       2520
+#define IDS_SMLAYOUT_SHOW_SEARCH        2521
+#define IDS_SMLAYOUT_SHOW_SEARCH_NOTE   2522
+#define IDS_SMLAYOUT_SHOW_TITLE         2523
+#define IDS_SMLAYOUT_SHOW_FOOTER        2524
+#define IDS_SMLAYOUT_SHOW_ACCOUNT       2525
+#define IDS_SMLAYOUT_SHOW_USERNAME      2526
+#define IDS_SMLAYOUT_SHOW_POWER         2527
+
+// Start › Search and shortcuts (2701-2799)
+#define IDS_PAGE_STARTMENU_EXTRAS       2701
+#define IDS_SMEXTRAS_DESCRIPTION        2702
+#define IDS_SMEXTRAS_HEADING_SEARCH     2703
+#define IDS_SMEXTRAS_HEADING_MOSTUSED   2704
+#define IDS_SMEXTRAS_HEADING_SHORTCUTS  2705
+#define IDS_SMEXTRAS_SETTINGS           2710
+#define IDS_SMEXTRAS_CALC               2711
+#define IDS_SMEXTRAS_COMMANDS           2712
+#define IDS_SMEXTRAS_COMMANDS_NOTE      2713
+#define IDS_SMEXTRAS_MOSTUSED           2714
+#define IDS_SMEXTRAS_MOSTUSED_COUNT     2715
+#define IDS_SMEXTRAS_MOSTUSED_NOTE      2716
+#define IDS_SMEXTRAS_SC_EXPLORER        2720
+#define IDS_SMEXTRAS_SC_DOCUMENTS       2721
+#define IDS_SMEXTRAS_SC_DOWNLOADS       2722
+#define IDS_SMEXTRAS_SC_PICTURES        2723
+#define IDS_SMEXTRAS_SC_MUSIC           2724
+#define IDS_SMEXTRAS_SC_VIDEOS          2725
+#define IDS_SMEXTRAS_SC_USER            2726
+#define IDS_SMEXTRAS_SC_SETTINGS        2727
+#define IDS_SMLOOK_THEME_SCHEDULED      2446
+#define IDS_SMLOOK_DARKFROM             2447
+#define IDS_SMLOOK_LIGHTFROM            2448
+#define IDS_SMLOOK_HEADING_IMAGE        2449
+#define IDS_SMLOOK_IMAGE                2450
+#define IDS_SMLOOK_IMAGE_PROMPT         2451
+#define IDS_SMLOOK_IMAGEBLUR            2452
+#define IDS_SMLOOK_IMAGEBLUR_NONE       2453
+#define IDS_SMLOOK_IMAGETINT            2454
+#define IDS_SMLOOK_IMAGE_NOTE           2455
+#define IDS_SMLOOK_IMAGE_NONE           2456
+#define IDS_SMLOOK_IMAGE_REMOVE         2457
+#define IDS_SMEXTRAS_FILES              2730
+#define IDS_SMEXTRAS_FILECOUNT          2731
+#define IDS_SMEXTRAS_NEWAPPS            2732
+#define IDS_SMEXTRAS_LETTERS_NOTE       2733
+#define IDS_SMBEHAVIOR_UPDATES          2630
+#define IDS_SMBEHAVIOR_ADVANCED         2631
+#define IDS_SMBEHAVIOR_FIRMWARE         2632
+#define IDS_SMBEHAVIOR_ADMIN_NOTE       2633
+#define IDS_SMBEHAVIOR_HEADING_MIDDLE   2634
+#define IDS_SMBEHAVIOR_MIDDLE           2635
+#define IDS_SMBEHAVIOR_MIDDLE_NONE      2636
+#define IDS_SMBEHAVIOR_MIDDLE_ALL       2637
+#define IDS_SMBEHAVIOR_MIDDLE_EXPLORER  2638
+#define IDS_SMBEHAVIOR_MIDDLE_TASKMGR   2639
+#define IDS_SMBEHAVIOR_MIDDLE_SETTINGS  2640
+#define IDS_STARTMENU_FULLSCREEN        1928
+#define IDS_STARTMENU_SHOWHIDDEN        1932
+#define IDS_SMEXTRAS_WINDOWS            2734
+#define IDS_SMEXTRAS_HISTORY            2735
+#define IDS_SMEXTRAS_CLEARHISTORY       2736
+#define IDS_SMEXTRAS_QUICK              2737
+#define IDS_SMEXTRAS_QUICK_NOTE         2738
+
+// Page: Settings (2301-2399)
+#define IDS_PAGE_SETTINGS               2301
+#define IDS_SETTINGS_LANGUAGE           2302
+#define IDS_SETTINGS_IMPORT             2303
+#define IDS_SETTINGS_EXPORT             2304
+#define IDS_SETTINGS_RESET              2305
+
+// Page: About (2001-2099)
+#define IDS_PAGE_ABOUT                  2001
+#define IDS_ABOUT_VERSION               2002
+#define IDS_ABOUT_PROJECT               2003
+#define IDS_ABOUT_AUTHOR                2004
+#define IDS_ABOUT_OS                    2005
+#define IDS_ABOUT_GITHUB                2006
+#define IDS_ABOUT_CREDITS               2007
+
+// Footer (2201-2299)
+#define IDS_RESTART_EXPLORER            2201
+
+// Custom menu editor (320-349)
+#define IDS_CM_TITLE                    320
+#define IDS_CM_COLUMN_NAME              321
+#define IDS_CM_COLUMN_COMMAND           322
+#define IDS_CM_ADD                      323
+#define IDS_CM_EDIT                     324
+#define IDS_CM_REMOVE                   325
+#define IDS_CM_UP                       326
+#define IDS_CM_DOWN                     327
+#define IDS_CM_OK                       328
+#define IDS_CM_CANCEL                   329
+#define IDS_CM_HINT                     330
+#define IDS_CM_EDIT_TITLE               331
+#define IDS_CM_NAME                     332
+#define IDS_CM_COMMAND                  333
+#define IDS_CM_ARGS                     334
+#define IDS_CM_ICON                     335
+#define IDS_CM_BROWSE                   336
+#define IDS_CM_FULL                     337
+#define IDS_CM_EMPTY                    338
+#define IDS_CM_ICON_PROMPT              339     // what the input box says above the icon field
+
+// Page: Menu (1201-1299)
+#define IDS_PAGE_MENU                   1201
+#define IDS_MENU_DESCRIPTION            1202
+
+// Page: Desktop menu (1206-1210)
+#define IDS_PAGE_DESKTOPMENU            1206
+#define IDS_DESKTOPMENU_DESCRIPTION     1207
+#define IDS_MENU_HEADING_BUILTIN        1203
+#define IDS_MENU_HEADING_CUSTOM         1204
+#define IDS_MENU_CUSTOM_DESCRIPTION     1205
+#define IDS_MENU_HOWTO                  1208    // how the ready-made drop-down works, on both menu pages
+#define IDS_MOD_DESKTOPMENU             1209    // the toggle of the desktop-menu-entry mod
+
+// The taskbar context menu mod, and the link that opens the entry editor
+#define IDS_MOD_TASKBARMENU             1160
+#define IDS_MOD_CUSTOMITEMS             1152
+
+// Ready-made choices in the entry window (340-379)
+#define IDS_PRESET_LABEL                340
+#define IDS_PRESET_CUSTOM               341
+#define IDS_PRESET_TASKMANAGER          342
+#define IDS_PRESET_SETTINGS             343
+#define IDS_PRESET_CONTROLPANEL         344
+#define IDS_PRESET_THISPC               345
+#define IDS_PRESET_RECYCLEBIN           346
+#define IDS_PRESET_DOWNLOADS            347
+#define IDS_PRESET_STARTUP              348
+#define IDS_PRESET_TERMINAL             349
+#define IDS_PRESET_CMD                  350
+#define IDS_PRESET_POWERSHELL           351
+#define IDS_PRESET_REGEDIT              352
+#define IDS_PRESET_DEVICEMANAGER        353
+#define IDS_PRESET_DISKMANAGER          354
+#define IDS_PRESET_SERVICES             355
+#define IDS_PRESET_APPS                 356
+#define IDS_PRESET_DISPLAY              357
+#define IDS_PRESET_SOUND                358
+#define IDS_PRESET_BLUETOOTH            359
+
+// Help for the icon field of an entry (360-369)
+#define IDS_CM_ICON_HEADING             360
+#define IDS_CM_ICON_HELP_1              361
+#define IDS_CM_ICON_HELP_2              362
+#define IDS_CM_ICON_HELP_3              363
+#define IDS_CM_ICON_LINK                364     // ";y" link to the glyph list on Microsoft Learn
+#define IDS_CM_ICON_CHARMAP             365     // ";y" link that opens Character Map
+#define IDS_PRESET_NEW_NAME             366     // the name a blank entry starts with

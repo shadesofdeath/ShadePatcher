@@ -1,0 +1,7 @@
+# settings.reg is read line by line by the settings window and must keep CRLF line endings everywhere.
+*.reg text eol=crlf
+*.cmd text eol=crlf
+*.ttf binary
+*.ico binary
+*.png binary
+*.lib binary

@@ -1,0 +1,108 @@
+// gui.rc - non-localized resources of sp_gui.dll (version info, embedded settings.reg).
+// The strings live in lang/gui.<culture>.rc, one file per language.
+
+#include "resource.h"
+#include "winres.h"
+#include "version.h"
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+/////////////////////////////////////////////////////////////////////////////
+// Version
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION VER_FILE
+ PRODUCTVERSION VER_PRODUCT
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "shadesofdeath"
+            VALUE "FileDescription", "ShadePatcher Settings"
+            VER_FILE_STRING
+            VALUE "InternalName", "sp_gui.dll"
+            VALUE "LegalCopyright", "Copyright (C) 2026 shadesofdeath"
+            VALUE "OriginalFilename", "sp_gui.dll"
+            VALUE "ProductName", "ShadePatcher"
+            VER_PRODUCT_STRING
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+// Icon
+//
+// Shared with core.rc so both binaries carry the same product icon.
+
+IDI_APPICON             ICON                    "..\\..\\common\\app.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+// The custom menu editor
+//
+// Every caption here is empty on purpose: the dialog fills them from the string table when it opens, so it
+// follows the language the user picked rather than the one the resources were built in.
+
+IDD_CUSTOMMENU DIALOGEX 0, 0, 340, 200
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION ""
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    CONTROL         "", IDC_CM_LIST, "SysListView32",
+                    LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,
+                    7, 7, 250, 165
+    PUSHBUTTON      "", IDC_CM_ADD,      263, 7,   70, 14
+    PUSHBUTTON      "", IDC_CM_EDIT,     263, 25,  70, 14
+    PUSHBUTTON      "", IDC_CM_REMOVE,   263, 43,  70, 14
+    PUSHBUTTON      "", IDC_CM_UP,       263, 65,  70, 14
+    PUSHBUTTON      "", IDC_CM_DOWN,     263, 83,  70, 14
+    DEFPUSHBUTTON   "", IDOK,            263, 140, 70, 14
+    PUSHBUTTON      "", IDCANCEL,        263, 158, 70, 14
+    LTEXT           "", IDC_CM_HINT,     7, 176, 250, 18
+END
+
+// The entry window. It opens on a list of ready-made choices, because most of what people put on this menu is
+// something Windows already has; picking one fills the rest in. Choosing "Custom" is what reveals the fields,
+// and those take anything the shell can open: a program, a folder, a document or a web address.
+//
+// The label column is wide enough for the longest translation; a narrower one clipped "Bağımsız değişkenler".
+IDD_CUSTOMMENU_EDIT DIALOGEX 0, 0, 330, 156
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION ""
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    LTEXT           "", IDC_CME_PRESETLABEL,  10, 12,  95, 10
+    COMBOBOX        IDC_CME_PRESET,           110, 10, 210, 200, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "", IDC_CME_NAMELABEL,    10, 38,  95, 10
+    EDITTEXT        IDC_CME_NAME,             110, 36, 210, 14, ES_AUTOHSCROLL
+    LTEXT           "", IDC_CME_COMMANDLABEL, 10, 60,  95, 10
+    EDITTEXT        IDC_CME_COMMAND,          110, 58, 150, 14, ES_AUTOHSCROLL
+    PUSHBUTTON      "", IDC_CME_BROWSE,       265, 58, 55, 14
+    LTEXT           "", IDC_CME_ARGSLABEL,    10, 82,  95, 10
+    EDITTEXT        IDC_CME_ARGS,             110, 80, 210, 14, ES_AUTOHSCROLL
+    LTEXT           "", IDC_CME_ICONLABEL,    10, 104, 95, 10
+    EDITTEXT        IDC_CME_ICON,             110, 102, 210, 14, ES_AUTOHSCROLL
+    // Removing an entry belongs here rather than as a second row on the page: an entry then takes one line,
+    // and everything about it is in one place.
+    PUSHBUTTON      "", IDC_CME_DELETE,       10, 132, 70, 14
+    DEFPUSHBUTTON   "", IDOK,                 202, 132, 56, 14
+    PUSHBUTTON      "", IDCANCEL,             264, 132, 56, 14
+END
+
+/////////////////////////////////////////////////////////////////////////////
+// The page definition. Read at runtime by GUI_Build().
+
+IDR_SETTINGS            RCDATA                  "settings.reg"

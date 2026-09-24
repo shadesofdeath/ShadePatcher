@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- gui: sp_gui.dll, the settings window. Exported entry point: ZZGUI (see GUI.c). -->
+  <Import Project="..\..\build\props\shared.props" />
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B2E4D3C5-6E7F-4081-9BAC-1D2E3F4A5B6C}</ProjectGuid>
+    <RootNamespace>gui</RootNamespace>
+    <ProjectName>gui</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="..\..\build\props\configuration.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="..\..\build\props\targets.props" />
+  <PropertyGroup>
+    <TargetName>sp_gui</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)resources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>Comdlg32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="GUI.h" />
+    <ClInclude Include="registry.h" />
+    <ClInclude Include="conditions.h" />
+    <ClInclude Include="custommenu.h" />
+    <ClInclude Include="resources\resource.h" />
+    <ClInclude Include="resources\strings.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.c" />
+    <ClCompile Include="GUI.c" />
+    <ClCompile Include="registry.c" />
+    <ClCompile Include="conditions.c" />
+    <ClCompile Include="custommenu.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources\gui.rc" />
+    <ResourceCompile Include="resources\lang\gui.en-US.rc" />
+    <ResourceCompile Include="resources\lang\gui.tr-TR.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\settings.reg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\common\common.vcxproj">
+      <Project>{A1F3C2B4-5D6E-4F70-8A9B-0C1D2E3F4A5B}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

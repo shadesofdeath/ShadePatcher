@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+    setup: sp_setup.exe, which installs and removes the product.
+    It needs administrator rights (it writes to C:\Windows and Program Files), so the manifest asks for them and
+    double-clicking it raises the usual prompt.
+  -->
+  <Import Project="..\..\build\props\shared.props" />
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E5B70618-91A2-43B4-CEDF-4A5B6C7D8E9F}</ProjectGuid>
+    <RootNamespace>setup</RootNamespace>
+    <ProjectName>setup</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="..\..\build\props\configuration.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="..\..\build\props\targets.props" />
+  <PropertyGroup>
+    <TargetName>sp_setup</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="setup.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="setup.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\common\common.vcxproj">
+      <Project>{A1F3C2B4-5D6E-4F70-8A9B-0C1D2E3F4A5B}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

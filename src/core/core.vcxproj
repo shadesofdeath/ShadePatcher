@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+    core: ShadePatcher.dll, the module explorer.exe loads.
+    Holds the mod engine (src/core/engine) and the mods themselves (src/core/mods).
+  -->
+  <Import Project="..\..\build\props\shared.props" />
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C3F5E4D6-7F80-4192-ACBD-2E3F4A5B6C7D}</ProjectGuid>
+    <RootNamespace>core</RootNamespace>
+    <ProjectName>core</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="..\..\build\props\configuration.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="..\..\build\props\targets.props" />
+  <PropertyGroup>
+    <TargetName>ShadePatcher</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <!-- $(MSBuildThisFileDirectory) is what lets a mod include "engine/modapi.h" -->
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory);$(SolutionDir)libs\SlimDetours\include;$(SolutionDir)vendor\winui3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <!-- runtimeobject.lib provides the WinRT activation entry points C++/WinRT calls; see mods\taskbar_menu_entry.cpp. -->
+      <AdditionalDependencies>ntdll.lib;runtimeobject.lib;$(SolutionDir)libs\SlimDetours\lib\x64\$(Configuration)\KNSoft.SlimDetours.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup Label="Entry points and the injection vector">
+    <ClCompile Include="dllmain.c" />
+    <ClCompile Include="dxgi_proxy.c" />
+  </ItemGroup>
+  <ItemGroup Label="Engine">
+    <ClInclude Include="engine\hooks.h" />
+    <ClInclude Include="engine\input.h" />
+    <ClInclude Include="engine\log.h" />
+    <ClInclude Include="engine\manager.h" />
+    <ClInclude Include="engine\mod.h" />
+    <ClInclude Include="engine\modapi.h" />
+    <ClInclude Include="engine\settings.h" />
+    <ClInclude Include="engine\safemode.h" />
+    <ClInclude Include="engine\symbols.h" />
+    <ClInclude Include="engine\modules.h" />
+    <ClCompile Include="engine\hooks.c" />
+    <ClCompile Include="engine\hostinject.c" />
+    <ClCompile Include="engine\input.c" />
+    <ClCompile Include="engine\log.c" />
+    <ClCompile Include="engine\manager.c" />
+    <ClCompile Include="engine\modules.c" />
+    <ClCompile Include="engine\settings.c" />
+    <ClCompile Include="engine\safemode.c" />
+    <ClCompile Include="engine\surfaces.c" />
+    <ClCompile Include="engine\symbols.cpp" />
+    <ClCompile Include="engine\update.c" />
+  </ItemGroup>
+  <ItemGroup Label="Mods">
+    <ClCompile Include="mods\mod_table.c" />
+    <ClCompile Include="mods\tray_show_all_icons.cpp" />
+    <ClCompile Include="mods\tray_icons_rebroadcast.cpp" />
+    <ClCompile Include="mods\desktop_toggle_icons.cpp" />
+    <ClCompile Include="mods\context_menu_preloader.cpp" />
+    <ClCompile Include="mods\explorer_auto_file_sizes.cpp" />
+    <ClCompile Include="mods\explorer_double_click_up.cpp" />
+    <ClCompile Include="mods\shell_menu_entry.cpp" />
+    <ClCompile Include="mods\desktop_icons_view.cpp" />
+    <ClCompile Include="mods\extension_change_no_warning.cpp" />
+    <ClCompile Include="mods\taskbar_button_click.cpp" />
+    <ClCompile Include="mods\start_menu_all_apps.cpp" />
+    <ClCompile Include="mods\hide_desktop_icon_text.cpp" />
+    <ClCompile Include="mods\explorer_single_window_tabs.cpp" />
+    <ClCompile Include="mods\explorer_reopen_closed_tab.cpp" />
+    <ClCompile Include="mods\taskbar_wheel_cycle.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClCompile Include="mods\taskbar_start_button_position.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClCompile Include="mods\taskbar_empty_space_clicks.cpp" />
+    <ClCompile Include="mods\taskbar_volume_control.cpp" />
+    <ClCompile Include="mods\taskbar_clock_customization.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClCompile Include="mods\taskbar_icon_size.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClCompile Include="mods\taskbar_thumbnail_size.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClCompile Include="mods\taskbar_notification_icon_spacing.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClCompile Include="mods\desktop_icon_selection_style.cpp" />
+    <ClCompile Include="mods\taskbar_tray_system_icon_tweaks.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClCompile Include="mods\explorer_hide_nav_items.cpp" />
+    <ClCompile Include="mods\legacy_file_copy.cpp" />
+    <ClCompile Include="mods\legacy_tray_flyouts.cpp" />
+    <ClCompile Include="mods\remove_context_menu_items.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClCompile Include="mods\taskbar_count_badges.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClCompile Include="mods\desktop_icons_spotlight.cpp" />
+    <ClInclude Include="mods\taskbar_styler_rules.h" />
+    <ClInclude Include="mods\taskbar_styler_themes.h" />
+    <ClCompile Include="mods\taskbar_styler.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClCompile Include="mods\start_menu_on_left.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClCompile Include="mods\start_power_buttons.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClCompile Include="mods\taskbar_labels.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <!-- C++/WinRT reports failures by throwing, so this one mod is compiled with exceptions on. Everything
+         XAML can call into is wrapped; see the file's header comment. -->
+    <ClCompile Include="mods\taskbar_menu_entry.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <!-- Same reason: it talks to WinUI 3 through C++/WinRT. -->
+    <ClCompile Include="mods\desktop_menu_entry.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClCompile Include="mods\custom_start_menu.cpp" />
+  </ItemGroup>
+  <ItemGroup Label="Start menu (the custom-start-menu mod)">
+    <ClInclude Include="startmenu\catalog.h" />
+    <ClInclude Include="startmenu\fontres.h" />
+    <ClInclude Include="startmenu\host.h" />
+    <ClInclude Include="startmenu\text.h" />
+    <ClInclude Include="startmenu\tokens.h" />
+    <ClInclude Include="startmenu\view.h" />
+    <ClInclude Include="startmenu\backdrop.h" />
+    <ClCompile Include="startmenu\backdrop.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClInclude Include="startmenu\search.h" />
+    <ClInclude Include="startmenu\filesearch.h" />
+    <ClCompile Include="startmenu\filesearch.cpp" />
+    <ClInclude Include="startmenu\quick.h" />
+    <ClCompile Include="startmenu\quick.cpp">
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <ClCompile Include="startmenu\search.cpp" />
+    <None Include="startmenu\settings_table.inc" />
+    <ClCompile Include="startmenu\catalog.cpp" />
+    <ClCompile Include="startmenu\host.cpp" />
+    <ClCompile Include="startmenu\text.cpp" />
+    <ClCompile Include="startmenu\view.cpp" />
+    <None Include="startmenu\fonts\Figtree-Regular.ttf" />
+    <None Include="startmenu\fonts\Figtree-Medium.ttf" />
+    <None Include="startmenu\fonts\Figtree-SemiBold.ttf" />
+    <None Include="startmenu\fonts\Figtree-Bold.ttf" />
+    <None Include="startmenu\fonts\OFL.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="core.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\common\common.vcxproj">
+      <Project>{A1F3C2B4-5D6E-4F70-8A9B-0C1D2E3F4A5B}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <!--
+    The taskbar menu entry shows the product icon, and XAML loads an image from a path rather than from this
+    DLL's resources, so the PNG has to sit next to the DLL. The installer copies it alongside the binaries for
+    the same reason.
+  -->
+  <Target Name="CopyProductIcon" AfterTargets="Build">
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)..\common\app.png"
+          DestinationFolder="$(OutDir)"
+          SkipUnchangedFiles="true" />
+  </Target>
+</Project>

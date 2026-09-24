@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- common: static library shared by the GUI DLL and the core DLL (OS version, localization, small helpers). -->
+  <Import Project="..\..\build\props\shared.props" />
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A1F3C2B4-5D6E-4F70-8A9B-0C1D2E3F4A5B}</ProjectGuid>
+    <RootNamespace>common</RootNamespace>
+    <ProjectName>common</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="..\..\build\props\configuration.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="..\..\build\props\targets.props" />
+  <ItemGroup>
+    <ClInclude Include="config.h" />
+    <ClInclude Include="version.h" />
+    <ClInclude Include="osversion.h" />
+    <ClInclude Include="utils.h" />
+    <ClInclude Include="localization.h" />
+    <ClInclude Include="explorer.h" />
+    <ClInclude Include="shortcut.h" />
+    <ClInclude Include="menuitems.h" />
+    <ClInclude Include="inputbox.h" />
+    <ClInclude Include="getline.h" />
+    <ClInclude Include="fmemopen.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="osversion.c" />
+    <ClCompile Include="utils.c" />
+    <ClCompile Include="localization.cpp" />
+    <ClCompile Include="explorer.c" />
+    <ClCompile Include="shortcut.c" />
+    <ClCompile Include="menuitems.c" />
+    <ClCompile Include="inputbox.c" />
+    <ClCompile Include="getline.c" />
+    <ClCompile Include="fmemopen.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

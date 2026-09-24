@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+    symbolprobe: looks up the undocumented shell functions the queued mods need, so a mod is only written once
+    its target is known to exist on the current Windows build.
+  -->
+  <Import Project="..\..\build\props\shared.props" />
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F6C81729-A2B3-44C5-DFE0-5B6C7D8E9FA0}</ProjectGuid>
+    <RootNamespace>symbolprobe</RootNamespace>
+    <ProjectName>symbolprobe</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="..\..\build\props\configuration.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="..\..\build\props\targets.props" />
+  <PropertyGroup>
+    <TargetName>sp_symbolprobe</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\core;$(SolutionDir)libs\SlimDetours\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>ntdll.lib;$(SolutionDir)libs\SlimDetours\lib\x64\$(Configuration)\KNSoft.SlimDetours.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="symbolprobe.c" />
+  </ItemGroup>
+  <ItemGroup Label="The engine layers it needs">
+    <ClCompile Include="..\..\src\core\engine\hooks.c" />
+    <ClCompile Include="..\..\src\core\engine\log.c" />
+    <ClCompile Include="..\..\src\core\engine\settings.c" />
+    <ClCompile Include="..\..\src\core\engine\symbols.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\common\common.vcxproj">
+      <Project>{A1F3C2B4-5D6E-4F70-8A9B-0C1D2E3F4A5B}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

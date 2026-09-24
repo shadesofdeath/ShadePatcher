@@ -1,0 +1,18 @@
+# Build output (build\props is source and stays tracked)
+build/bin/
+build/obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.VC.db
+*.VC.opendb
+*.ipch
+*.aps
+*.log
+*.tlog
+
+# Local tooling and Windows folder metadata
+.claude/
+desktop.ini
