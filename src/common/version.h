@@ -6,7 +6,7 @@
 
 #define VER_MAJOR       0
 #define VER_MINOR       1
-#define VER_BUILD_HI    0
+#define VER_BUILD_HI    1
 #define VER_BUILD_LO    0
 #define VER_FLAGS       VS_FF_PRERELEASE
 

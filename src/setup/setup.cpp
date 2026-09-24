@@ -173,10 +173,26 @@ ResourceView FindPayloadResource(int id)
     return view;
 }
 
+// Where a payload entry is copied from. The installer entry is this very program, whatever it has been renamed
+// to (a downloaded copy is often called setup.exe); it is still installed as SETUP_UTILITY_NAME.
+std::wstring PayloadSource(const Payload& item, const std::wstring& source)
+{
+    if (item.resourceId == 0)
+    {
+        wchar_t self[MAX_PATH];
+        DWORD cch = GetModuleFileNameW(nullptr, self, MAX_PATH);
+        if (cch && cch < MAX_PATH)
+        {
+            return self;
+        }
+    }
+    return source + L"\\" + item.name;
+}
+
 // Whether a payload entry can be produced at all: from the folder this program runs from, or from inside it.
 bool PayloadAvailable(const Payload& item, const std::wstring& source)
 {
-    if (FileExists(source + L"\\" + item.name))
+    if (FileExists(PayloadSource(item, source)))
     {
         return true;
     }
@@ -324,8 +340,12 @@ bool WriteWithRetry(const ResourceView& view, const std::wstring& to, DWORD* las
 // Puts one payload file in place: the copy next to the installer when there is one, else the embedded one.
 bool PlacePayload(const Payload& item, const std::wstring& source, const std::wstring& target, DWORD* lastError)
 {
-    std::wstring from = source + L"\\" + item.name;
+    std::wstring from = PayloadSource(item, source);
     std::wstring to = target + L"\\" + item.name;
+    if (_wcsicmp(from.c_str(), to.c_str()) == 0)
+    {
+        return true;    // run from the install folder: already in place
+    }
     if (FileExists(from))
     {
         return CopyWithRetry(from, to, lastError);
